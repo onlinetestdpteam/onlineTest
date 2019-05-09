@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TestpaperMapper">
+  <resultMap id="BaseResultMap" type="model.Testpaper">
+    <id column="T_id" jdbcType="INTEGER" property="id" />
+    <result column="T_paperName" jdbcType="VARCHAR" property="papername" />
+    <result column="T_topictList" jdbcType="VARCHAR" property="topictlist" />
+    <result column="T_totalTime" jdbcType="TIMESTAMP" property="totaltime" />
+    <result column="T_subject" jdbcType="INTEGER" property="subject" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    T.id as T_id, T.paperName as T_paperName, T.topictList as T_topictList, T.totalTime as T_totalTime, 
+    T.subject as T_subject
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from testpaper T
+    where T.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from testpaper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.Testpaper">
+    insert into testpaper (id, paperName, topictList, 
+      totalTime, subject)
+    values (#{id,jdbcType=INTEGER}, #{papername,jdbcType=VARCHAR}, #{topictlist,jdbcType=VARCHAR}, 
+      #{totaltime,jdbcType=TIMESTAMP}, #{subject,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.Testpaper">
+    insert into testpaper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="papername != null">
+        paperName,
+      </if>
+      <if test="topictlist != null">
+        topictList,
+      </if>
+      <if test="totaltime != null">
+        totalTime,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="papername != null">
+        #{papername,jdbcType=VARCHAR},
+      </if>
+      <if test="topictlist != null">
+        #{topictlist,jdbcType=VARCHAR},
+      </if>
+      <if test="totaltime != null">
+        #{totaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.Testpaper">
+    update testpaper
+    <set>
+      <if test="papername != null">
+        paperName = #{papername,jdbcType=VARCHAR},
+      </if>
+      <if test="topictlist != null">
+        topictList = #{topictlist,jdbcType=VARCHAR},
+      </if>
+      <if test="totaltime != null">
+        totalTime = #{totaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.Testpaper">
+    update testpaper
+    set paperName = #{papername,jdbcType=VARCHAR},
+      topictList = #{topictlist,jdbcType=VARCHAR},
+      totalTime = #{totaltime,jdbcType=TIMESTAMP},
+      subject = #{subject,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

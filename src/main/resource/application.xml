@@ -3,21 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd ">
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
     <context:component-scan base-package="com.service"/>
     <context:component-scan base-package="com.serviceImpl"/>
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://148.70.0.26:3306/close?serverTimezone=UTC&amp;useSSL=false"/>
-        <property name="username" value="root11"/>
+        <property name="url" value="jdbc:mysql://111.230.27.166:3306/onlineTest_zhiy?useSSL=false&amp;serverTimezone=UTC"/>
+        <property name="username" value="onlineTest_zhiy"/>
 
-        <property name="password" value="qwertyuiop123."/>
+        <property name="password" value="NwMTXWtQ4seFFN47"/>
         <!--最大连接数-->
         <property name="maxTotal" value="30"/>
         <!--最大空闲数-->
@@ -71,7 +72,26 @@
 
 
 
-    <!-- 第一中配置freeMarker视图解析器 方式，将配置信息写在 freemarker.properties 中 -->
+    <!--引入MongoDB连接文件-->
+    <context:property-placeholder location="classpath*:mongoDB.properties" ignore-unresolvable="true"/>
+    <!--连接MongoDB服务器-->
+    <mongo:mongo-client id="mongo" host="${mongo.host}" port="${mongo.port}" >
+        <mongo:client-options connections-per-host="${mongo.connectionsPerHost}"
+                              threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
+                              connect-timeout="${mongo.connectTimeout}"
+                              max-wait-time="${mongo.maxWaitTime}"
+                              socket-keep-alive="${mongo.socketKeepAlive}"
+                              socket-timeout="${mongo.socketTimeout}"/>
+    </mongo:mongo-client>
+
+    <mongo:db-factory id="mongoDbFactory"  dbname="${mongo.dbname}"  mongo-ref="mongo"/>
+
+
+    <!--配置mongoTemplate-->
+    <!-- mongodb的主要操作对象，所有对mongodb的增删改查的操作都是通过它完成-->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
 
 
 
