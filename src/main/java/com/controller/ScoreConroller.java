@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.dao.ScoreMapper;
 import com.service.ScoreService;
 import com.model.MsgBean;
@@ -7,6 +8,8 @@ import com.model.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/Mobile/Score")
@@ -33,7 +36,7 @@ public class ScoreConroller extends BaseController<Score> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Score score) {
-
+        score.setId(new UUIDgenarater().getUUID());
         return super.instertById(score, scoreService,scoreMapper);
     }
 

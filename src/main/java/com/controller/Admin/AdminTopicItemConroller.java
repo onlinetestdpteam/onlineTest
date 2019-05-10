@@ -1,5 +1,6 @@
 package com.controller.Admin;
 
+import com.UUID.UUIDgenarater;
 import com.model.MsgBean;
 import com.model.TopicItem;
 import com.service.TopicItemService;
@@ -53,7 +54,7 @@ public class AdminTopicItemConroller {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instert(@ModelAttribute TopicItem topicItem) {
-
+        topicItem.setId(new UUIDgenarater().getUUID());
         try {
             topicItemService.insert(topicItem);
         }catch (Exception e){

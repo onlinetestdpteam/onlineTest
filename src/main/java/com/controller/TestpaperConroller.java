@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.dao.TestpaperMapper;
 import com.service.TestpaperService;
 import com.model.MsgBean;
@@ -33,7 +34,7 @@ public class TestpaperConroller extends BaseController<Testpaper> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Testpaper testpaper) {
-
+        testpaper.setId(new UUIDgenarater().getUUID());
         return super.instertById(testpaper, testpaperService,testpaperMapper);
     }
 

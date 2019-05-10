@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.dao.SitedataMapper;
 import com.service.SitedataService;
 import com.model.MsgBean;
@@ -33,7 +34,7 @@ public class SitedataConroller extends BaseController<Sitedata> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Sitedata sitedata) {
-
+        sitedata.setId(new UUIDgenarater().getUUID());
         return super.instertById(sitedata, sitedataService,sitedataMapper);
     }
 

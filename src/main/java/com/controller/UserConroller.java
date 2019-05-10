@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.controller.Admin.AdminUserConroller;
 import com.dao.UserMapper;
 import com.service.UserService;
@@ -78,7 +79,7 @@ public class UserConroller extends BaseController<User> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute User user) {
-
+        user.setId(new UUIDgenarater().getUUID());
         return super.instertById(user, userService,userMapper);
     }
 

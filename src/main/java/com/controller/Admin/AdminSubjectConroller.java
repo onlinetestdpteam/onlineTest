@@ -1,5 +1,6 @@
 package com.controller.Admin;
 
+import com.UUID.UUIDgenarater;
 import com.controller.BaseController;
 import com.dao.SubjectMapper;
 import com.service.SubjectService;
@@ -34,7 +35,7 @@ public class AdminSubjectConroller extends BaseController<Subject> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Subject subject) {
-
+        subject.setId(new UUIDgenarater().getUUID());
         return super.instertById(subject, subjectService,subjectMapper);
     }
 

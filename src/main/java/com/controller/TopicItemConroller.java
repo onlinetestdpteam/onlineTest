@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.dao.ScoreMapper;
 import com.model.MsgBean;
 import com.model.Score;
@@ -56,7 +57,7 @@ public class TopicItemConroller {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instert(@ModelAttribute TopicItem topicItem) {
-
+        topicItem.setId(new UUIDgenarater().getUUID());
         try {
             topicItemService.insert(topicItem);
         }catch (Exception e){

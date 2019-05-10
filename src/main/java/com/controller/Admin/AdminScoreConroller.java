@@ -1,5 +1,6 @@
 package com.controller.Admin;
 
+import com.UUID.UUIDgenarater;
 import com.controller.BaseController;
 import com.dao.ScoreMapper;
 import com.service.ScoreService;
@@ -34,7 +35,7 @@ public class AdminScoreConroller extends BaseController<Score> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Score score) {
-
+        score.setId(new UUIDgenarater().getUUID());
         return super.instertById(score, scoreService,scoreMapper);
     }
 

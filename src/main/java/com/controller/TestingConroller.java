@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.UUID.UUIDgenarater;
 import com.dao.TestingMapper;
 import com.service.TestingService;
 import com.model.MsgBean;
@@ -33,7 +34,7 @@ public class TestingConroller extends BaseController<Testing> {
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
     public MsgBean instertById(@ModelAttribute Testing testing) {
-
+        testing.setId(new UUIDgenarater().getUUID());
         return super.instertById(testing, testingService,testingMapper);
     }
 
