@@ -1,9 +1,8 @@
 package com.dao;
 
-import java.util.List;
-
 import com.model.Sitedata;
 import com.model.SitedataExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SitedataMapper extends BaseDao<Sitedata>{
@@ -11,7 +10,7 @@ public interface SitedataMapper extends BaseDao<Sitedata>{
 
     int deleteByExample(SitedataExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Sitedata record);
 
@@ -19,7 +18,7 @@ public interface SitedataMapper extends BaseDao<Sitedata>{
 
     List<Sitedata> selectByExample(SitedataExample example);
 
-    Sitedata selectByPrimaryKey(Integer id);
+    Sitedata selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Sitedata record, @Param("example") SitedataExample example);
 

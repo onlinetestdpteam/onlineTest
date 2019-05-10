@@ -1,7 +1,7 @@
 package com.model;
 
 public class Score {
-    private Integer id;
+    private String id;
 
     private String stuid;
 
@@ -9,12 +9,12 @@ public class Score {
 
     private Integer testscore;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getStuid() {

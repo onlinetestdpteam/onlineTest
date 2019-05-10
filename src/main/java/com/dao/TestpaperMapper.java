@@ -3,13 +3,13 @@ package com.dao;
 import com.model.Testpaper;
 
 public interface TestpaperMapper extends BaseDao<Testpaper>{
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Testpaper record);
 
     int insertSelective(Testpaper record);
 
-    Testpaper selectByPrimaryKey(Integer id);
+    Testpaper selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Testpaper record);
 

@@ -7,13 +7,13 @@
 
         <!--<mapper resource="mapper/*.xml"/>-->
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <!--<mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>-->
+        <mapper resource="mapper/selfCreatMapper/UserMapperEx.xml"/>
 
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <!--<mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>-->
+        <mapper resource="mapper/selfCreatMapper/PermissionMapper.xml"/>
 
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <!--<mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>-->
+        <mapper resource="mapper/selfCreatMapper/UserRoleMapperEx.xml"/>
 
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
         <!--<mapper resource="classpath:mapper/selfCreatMapper/*.xml"/>-->

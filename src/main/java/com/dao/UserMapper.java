@@ -12,6 +12,8 @@ public interface UserMapper extends BaseDao<User>{
 
     User selectByPrimaryKey(String id);
 
+    User selectByUsername(String name);
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);

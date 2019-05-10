@@ -1,9 +1,8 @@
 package com.dao;
 
-import java.util.List;
-
 import com.model.Testing;
 import com.model.TestingExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TestingMapper extends BaseDao<Testing>{
@@ -11,7 +10,7 @@ public interface TestingMapper extends BaseDao<Testing>{
 
     int deleteByExample(TestingExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Testing record);
 
@@ -19,7 +18,7 @@ public interface TestingMapper extends BaseDao<Testing>{
 
     List<Testing> selectByExample(TestingExample example);
 
-    Testing selectByPrimaryKey(Integer id);
+    Testing selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Testing record, @Param("example") TestingExample example);
 

@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.model.User">
-    <id column="T_id" jdbcType="VARCHAR" property="id" />
-    <result column="T_uname" jdbcType="VARCHAR" property="uname" />
-    <result column="T_pwd" jdbcType="VARCHAR" property="pwd" />
-    <result column="T_status" jdbcType="INTEGER" property="status" />
-    <result column="T_phone" jdbcType="VARCHAR" property="phone" />
-    <result column="T_type" jdbcType="INTEGER" property="type" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     T.id as T_id, T.uname as T_uname, T.pwd as T_pwd, T.status as T_status, T.phone as T_phone, 
@@ -15,7 +15,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+   *
     from user T
     where T.id = #{id,jdbcType=VARCHAR}
   </select>

@@ -1,8 +1,8 @@
 package com.dao;
 
-import java.util.List;
 import com.model.Score;
 import com.model.ScoreExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ScoreMapper extends BaseDao<Score>{
@@ -10,7 +10,7 @@ public interface ScoreMapper extends BaseDao<Score>{
 
     int deleteByExample(ScoreExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Score record);
 
@@ -18,7 +18,7 @@ public interface ScoreMapper extends BaseDao<Score>{
 
     List<Score> selectByExample(ScoreExample example);
 
-    Score selectByPrimaryKey(Integer id);
+    Score selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Score record, @Param("example") ScoreExample example);
 

@@ -21,6 +21,7 @@
   </listener>
 
 
+
   <!--配置DispatcherServlet-->
   <servlet>
     <servlet-name>springmvc</servlet-name>
@@ -60,6 +61,19 @@
   <!--log4j2-end-->
 
 
+  <!-- 配置由Spring提供的过滤器，用于整合shiro框架 -->
+  <!-- 在项目启动的过程中，当前过滤器会从Spring工厂中提取同名对象 -->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>
+      org.springframework.web.filter.DelegatingFilterProxy
+    </filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <!--避免中文乱码-->
   <filter>

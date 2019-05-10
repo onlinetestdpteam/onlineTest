@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.SitedataMapper">
   <resultMap id="BaseResultMap" type="com.model.Sitedata">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="viewCount" jdbcType="INTEGER" property="viewcount" />
     <result column="testCount" jdbcType="INTEGER" property="testcount" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
@@ -75,7 +75,7 @@
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List" />
+    *
     from sitedata
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -84,15 +84,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+  *
     from sitedata
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sitedata
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.model.SitedataExample">
     delete from sitedata
@@ -103,7 +103,7 @@
   <insert id="insert" parameterType="com.model.Sitedata">
     insert into sitedata (id, viewCount, testCount, 
       time, registerCount)
-    values (#{id,jdbcType=INTEGER}, #{viewcount,jdbcType=INTEGER}, #{testcount,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=VARCHAR}, #{viewcount,jdbcType=INTEGER}, #{testcount,jdbcType=INTEGER}, 
       #{time,jdbcType=TIMESTAMP}, #{registercount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.model.Sitedata">
@@ -127,7 +127,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="viewcount != null">
         #{viewcount,jdbcType=INTEGER},
@@ -146,14 +146,14 @@
   <select id="countByExample" parameterType="com.model.SitedataExample" resultType="java.lang.Long">
     select count(*) from sitedata
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+     *
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     update sitedata
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.viewcount != null">
         viewCount = #{record.viewcount,jdbcType=INTEGER},
@@ -174,7 +174,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update sitedata
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
       viewCount = #{record.viewcount,jdbcType=INTEGER},
       testCount = #{record.testcount,jdbcType=INTEGER},
       time = #{record.time,jdbcType=TIMESTAMP},
@@ -199,7 +199,7 @@
         registerCount = #{registercount,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.Sitedata">
     update sitedata
@@ -207,6 +207,6 @@
       testCount = #{testcount,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
       registerCount = #{registercount,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

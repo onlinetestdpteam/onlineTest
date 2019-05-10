@@ -1,9 +1,8 @@
 package com.dao;
 
-import java.util.List;
-
 import com.model.Subject;
 import com.model.SubjectExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SubjectMapper extends BaseDao<Subject>{
@@ -11,7 +10,7 @@ public interface SubjectMapper extends BaseDao<Subject>{
 
     int deleteByExample(SubjectExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Subject record);
 
@@ -19,7 +18,7 @@ public interface SubjectMapper extends BaseDao<Subject>{
 
     List<Subject> selectByExample(SubjectExample example);
 
-    Subject selectByPrimaryKey(Integer id);
+    Subject selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Subject record, @Param("example") SubjectExample example);
 

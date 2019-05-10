@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.SubjectMapper">
   <resultMap id="BaseResultMap" type="com.model.Subject">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="course" jdbcType="VARCHAR" property="course" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List" />
+    *
     from subject
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -81,15 +81,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+   *
     from subject
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from subject
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.model.SubjectExample">
     delete from subject
@@ -99,7 +99,7 @@
   </delete>
   <insert id="insert" parameterType="com.model.Subject">
     insert into subject (id, course)
-    values (#{id,jdbcType=INTEGER}, #{course,jdbcType=VARCHAR})
+    values (#{id,jdbcType=VARCHAR}, #{course,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.model.Subject">
     insert into subject
@@ -113,7 +113,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="course != null">
         #{course,jdbcType=VARCHAR},
@@ -123,14 +123,14 @@
   <select id="countByExample" parameterType="com.model.SubjectExample" resultType="java.lang.Long">
     select count(*) from subject
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+     *
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     update subject
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.course != null">
         course = #{record.course,jdbcType=VARCHAR},
@@ -142,7 +142,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update subject
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=VARCHAR},
       course = #{record.course,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,11 +155,11 @@
         course = #{course,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.Subject">
     update subject
     set course = #{course,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
