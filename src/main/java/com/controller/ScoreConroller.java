@@ -2,8 +2,8 @@ package com.controller;
 
 import com.dao.ScoreMapper;
 import com.service.ScoreService;
-import model.MsgBean;
-import model.Score;
+import com.model.MsgBean;
+import com.model.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

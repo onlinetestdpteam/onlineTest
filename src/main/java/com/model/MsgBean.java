@@ -1,4 +1,4 @@
-package model;
+package com.model;
 
 public class MsgBean {
 //    状态：请求成功或者失败

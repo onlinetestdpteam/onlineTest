@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="model.User">
+  <resultMap id="BaseResultMap" type="com.model.User">
     <id column="T_id" jdbcType="VARCHAR" property="id" />
     <result column="T_uname" jdbcType="VARCHAR" property="uname" />
     <result column="T_pwd" jdbcType="VARCHAR" property="pwd" />
@@ -23,7 +23,7 @@
     delete from user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="model.User">
+  <insert id="insert" parameterType="com.model.User">
     insert into user (id, uname, pwd, 
       status, phone, type
       )
@@ -31,7 +31,7 @@
       #{status,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="model.User">
+  <insert id="insertSelective" parameterType="com.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -74,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.User">
     update user
     <set>
       <if test="uname != null">
@@ -95,7 +95,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="model.User">
+  <update id="updateByPrimaryKey" parameterType="com.model.User">
     update user
     set uname = #{uname,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},

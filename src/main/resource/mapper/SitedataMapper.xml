@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.SitedataMapper">
-  <resultMap id="BaseResultMap" type="model.Sitedata">
+  <resultMap id="BaseResultMap" type="com.model.Sitedata">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="viewCount" jdbcType="INTEGER" property="viewcount" />
     <result column="testCount" jdbcType="INTEGER" property="testcount" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id, viewCount, testCount, time, registerCount
   </sql>
-  <select id="selectByExample" parameterType="model.SitedataExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.model.SitedataExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,19 +94,19 @@
     delete from sitedata
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="model.SitedataExample">
+  <delete id="deleteByExample" parameterType="com.model.SitedataExample">
     delete from sitedata
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="model.Sitedata">
+  <insert id="insert" parameterType="com.model.Sitedata">
     insert into sitedata (id, viewCount, testCount, 
       time, registerCount)
     values (#{id,jdbcType=INTEGER}, #{viewcount,jdbcType=INTEGER}, #{testcount,jdbcType=INTEGER}, 
       #{time,jdbcType=TIMESTAMP}, #{registercount,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="model.Sitedata">
+  <insert id="insertSelective" parameterType="com.model.Sitedata">
     insert into sitedata
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -143,7 +143,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="model.SitedataExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.model.SitedataExample" resultType="java.lang.Long">
     select count(*) from sitedata
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -183,7 +183,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="model.Sitedata">
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Sitedata">
     update sitedata
     <set>
       <if test="viewcount != null">
@@ -201,7 +201,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="model.Sitedata">
+  <update id="updateByPrimaryKey" parameterType="com.model.Sitedata">
     update sitedata
     set viewCount = #{viewcount,jdbcType=INTEGER},
       testCount = #{testcount,jdbcType=INTEGER},

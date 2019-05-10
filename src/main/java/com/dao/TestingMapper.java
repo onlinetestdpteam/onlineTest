@@ -2,9 +2,8 @@ package com.dao;
 
 import java.util.List;
 
-import model.Subject;
-import model.Testing;
-import model.TestingExample;
+import com.model.Testing;
+import com.model.TestingExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface TestingMapper extends BaseDao<Testing>{

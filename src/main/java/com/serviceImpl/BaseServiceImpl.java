@@ -4,7 +4,7 @@ import com.dao.BaseDao;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.BaseService;
-import model.MsgBean;
+import com.model.MsgBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

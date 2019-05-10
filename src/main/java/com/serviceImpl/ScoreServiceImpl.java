@@ -2,11 +2,9 @@ package com.serviceImpl;
 
 import com.dao.BaseDao;
 import com.dao.ScoreMapper;
-import com.dao.UserMapper;
 import com.service.ScoreService;
-import com.service.UserService;
-import model.Score;
-import model.User;
+import com.model.Score;
+import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

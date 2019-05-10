@@ -2,8 +2,8 @@ package com.controller;
 
 import com.dao.TestingMapper;
 import com.service.TestingService;
-import model.MsgBean;
-import model.Testing;
+import com.model.MsgBean;
+import com.model.Testing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

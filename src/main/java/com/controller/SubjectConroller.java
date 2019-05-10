@@ -2,8 +2,8 @@ package com.controller;
 
 import com.dao.SubjectMapper;
 import com.service.SubjectService;
-import model.MsgBean;
-import model.Subject;
+import com.model.MsgBean;
+import com.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

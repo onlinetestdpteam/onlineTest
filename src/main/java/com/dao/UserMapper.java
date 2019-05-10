@@ -1,6 +1,6 @@
 package com.dao;
 
-import model.User;
+import com.model.User;
 
 public interface UserMapper extends BaseDao<User>{
 

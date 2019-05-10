@@ -1,6 +1,6 @@
 package com.service;
 
-import model.MsgBean;
+import com.model.MsgBean;
 
 public interface BaseService<T> {
 

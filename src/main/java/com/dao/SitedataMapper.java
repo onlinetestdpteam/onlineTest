@@ -2,9 +2,8 @@ package com.dao;
 
 import java.util.List;
 
-import model.Score;
-import model.Sitedata;
-import model.SitedataExample;
+import com.model.Sitedata;
+import com.model.SitedataExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface SitedataMapper extends BaseDao<Sitedata>{

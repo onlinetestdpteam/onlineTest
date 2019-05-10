@@ -1,55 +1,52 @@
 package com.controller.Admin;
 
 import com.controller.BaseController;
-import com.dao.ScoreMapper;
-import com.dao.UserMapper;
-import com.service.ScoreService;
-import com.service.UserService;
-import model.MsgBean;
-import model.Score;
-import model.User;
+import com.dao.SubjectMapper;
+import com.service.SubjectService;
+import com.model.MsgBean;
+import com.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/Admin/Score")
-public class ScoreConroller extends BaseController<Score> {
+@RequestMapping("/Admin/Subject")
+public class AdminSubjectConroller extends BaseController<Subject> {
 
     @Autowired
-    private ScoreService scoreService;
+    private SubjectService subjectService;
     @Autowired
-    private ScoreMapper scoreMapper;
+    private SubjectMapper subjectMapper;
 
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryById(@PathVariable("id")String id) {
-        return super.queryById(id, scoreService,scoreMapper);
+        return super.queryById(id, subjectService,subjectMapper);
     }
 
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
-        return super.queryAllByPage(page, count, scoreService,scoreMapper);
+        return super.queryAllByPage(page, count, subjectService,subjectMapper);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean instertById(@ModelAttribute Score score) {
+    public MsgBean instertById(@ModelAttribute Subject subject) {
 
-        return super.instertById(score, scoreService,scoreMapper);
+        return super.instertById(subject, subjectService,subjectMapper);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.PUT)
     @ResponseBody
-    public MsgBean updateByKey(@ModelAttribute Score score) {
-        return super.updateByKey(score, scoreService,scoreMapper);
+    public MsgBean updateByKey(@ModelAttribute Subject subject) {
+        return super.updateByKey(subject, subjectService,subjectMapper);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
     public MsgBean deleteById(@PathVariable("id") String id) {
-        return super.deleteById(id, scoreService,scoreMapper);
+        return super.deleteById(id, subjectService,subjectMapper);
     }
 }

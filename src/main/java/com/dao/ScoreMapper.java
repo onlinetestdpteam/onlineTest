@@ -1,11 +1,10 @@
 package com.dao;
 
 import java.util.List;
-import model.Score;
-import model.ScoreExample;
-import model.User;
+import com.model.Score;
+import com.model.ScoreExample;
 import org.apache.ibatis.annotations.Param;
-import org.bson.BsonDocument;
+
 public interface ScoreMapper extends BaseDao<Score>{
     long countByExample(ScoreExample example);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ScoreMapper">
-  <resultMap id="BaseResultMap" type="model.Score">
+  <resultMap id="BaseResultMap" type="com.model.Score">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="stuid" jdbcType="VARCHAR" property="stuid" />
     <result column="subject" jdbcType="INTEGER" property="subject" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, stuid, subject, testscore
   </sql>
-  <select id="selectByExample" parameterType="model.ScoreExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.model.ScoreExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from score
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="model.ScoreExample">
+  <delete id="deleteByExample" parameterType="com.model.ScoreExample">
     delete from score
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="model.Score">
+  <insert id="insert" parameterType="com.model.Score">
     insert into score (id, stuid, subject, 
       testscore)
     values (#{id,jdbcType=INTEGER}, #{stuid,jdbcType=VARCHAR}, #{subject,jdbcType=INTEGER}, 
       #{testscore,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="model.Score">
+  <insert id="insertSelective" parameterType="com.model.Score">
     insert into score
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -136,7 +136,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="model.ScoreExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.model.ScoreExample" resultType="java.lang.Long">
     select count(*) from score
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -172,7 +172,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="model.Score">
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Score">
     update score
     <set>
       <if test="stuid != null">
@@ -187,7 +187,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="model.Score">
+  <update id="updateByPrimaryKey" parameterType="com.model.Score">
     update score
     set stuid = #{stuid,jdbcType=VARCHAR},
       subject = #{subject,jdbcType=INTEGER},

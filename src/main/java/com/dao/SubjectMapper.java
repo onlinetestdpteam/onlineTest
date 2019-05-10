@@ -2,9 +2,8 @@ package com.dao;
 
 import java.util.List;
 
-import model.Sitedata;
-import model.Subject;
-import model.SubjectExample;
+import com.model.Subject;
+import com.model.SubjectExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface SubjectMapper extends BaseDao<Subject>{

@@ -1,7 +1,6 @@
 package com.dao;
 
-import model.Testing;
-import model.Testpaper;
+import com.model.Testpaper;
 
 public interface TestpaperMapper extends BaseDao<Testpaper>{
     int deleteByPrimaryKey(Integer id);

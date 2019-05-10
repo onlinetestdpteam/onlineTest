@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.TestpaperMapper">
-  <resultMap id="BaseResultMap" type="model.Testpaper">
+  <resultMap id="BaseResultMap" type="com.model.Testpaper">
     <id column="T_id" jdbcType="INTEGER" property="id" />
     <result column="T_paperName" jdbcType="VARCHAR" property="papername" />
     <result column="T_topictList" jdbcType="VARCHAR" property="topictlist" />
@@ -22,13 +22,13 @@
     delete from testpaper
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="model.Testpaper">
+  <insert id="insert" parameterType="com.model.Testpaper">
     insert into testpaper (id, paperName, topictList, 
       totalTime, subject)
     values (#{id,jdbcType=INTEGER}, #{papername,jdbcType=VARCHAR}, #{topictlist,jdbcType=VARCHAR}, 
       #{totaltime,jdbcType=TIMESTAMP}, #{subject,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="model.Testpaper">
+  <insert id="insertSelective" parameterType="com.model.Testpaper">
     insert into testpaper
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -65,7 +65,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="model.Testpaper">
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Testpaper">
     update testpaper
     <set>
       <if test="papername != null">
@@ -83,7 +83,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="model.Testpaper">
+  <update id="updateByPrimaryKey" parameterType="com.model.Testpaper">
     update testpaper
     set paperName = #{papername,jdbcType=VARCHAR},
       topictList = #{topictlist,jdbcType=VARCHAR},

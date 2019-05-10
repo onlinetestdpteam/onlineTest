@@ -2,7 +2,7 @@ package com.controller;
 
 
 import com.service.BaseService;
-import model.MsgBean;
+import com.model.MsgBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public abstract class BaseController<T> {
         baseService.setBaseDao(object);
 //        Object object=;
 //        if(object !=null){
-//            return new model(true,"queryGoodsById 操作成功!",object);
+//            return new com.model(true,"queryGoodsById 操作成功!",object);
 //        }
         return baseService.selectById(id);
     }

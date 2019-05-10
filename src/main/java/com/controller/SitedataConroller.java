@@ -2,8 +2,8 @@ package com.controller;
 
 import com.dao.SitedataMapper;
 import com.service.SitedataService;
-import model.MsgBean;
-import model.Sitedata;
+import com.model.MsgBean;
+import com.model.Sitedata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
