@@ -23,7 +23,9 @@ public class AdminScoreConroller extends BaseController<Score> {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryById(@PathVariable("id")String id) {
+
         return super.queryById(id, scoreService,scoreMapper);
+
     }
 
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
