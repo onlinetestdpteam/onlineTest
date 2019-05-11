@@ -393,5 +393,12 @@
     </pluginManagement>
   </build>
 
+  <distributionManagement>
+    <repository>
+      <id>proficio-repository</id>
+      <name>Proficio Repository</name>
+      <url>file:///www/wwwroot/onlineTest.zhiyigo.cn</url>
+    </repository>
+  </distributionManagement>
 
 </project>
