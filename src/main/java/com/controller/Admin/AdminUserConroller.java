@@ -6,6 +6,7 @@ import com.dao.UserMapper;
 import com.service.UserService;
 import com.model.MsgBean;
 import com.model.User;
+import com.util.FreemarkerUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -17,8 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.RequestContext;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/Admin/User")
@@ -31,12 +36,42 @@ public class AdminUserConroller extends BaseController<User> {
 
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+        String reslut="";
+        Map<String,Object> map=new HashMap<>();
+        request.getContextPath();
+        map.put("request",request);
+        map.put("comment","");
+        try {
+            reslut=FreemarkerUtils.getTemplate("admin/UserManager.ftl",map);
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+
+        return new MsgBean(true,"返回页面成功！",reslut);
+
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String Login(HttpSession session, Model model){
+
+
+        return "admin/login";
+    }
+
+
+
     @RequestMapping(value = "/login/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean Login(@ModelAttribute User user, HttpSession session, Model model){
+    public MsgBean Login(@RequestBody User user, HttpSession session, Model model){
 
         if(user.getUname()==null){
 
+//            model.addAttribute("message",new MsgBean(false,"账号不为空 ",false));
+//            return "admin/login";
             return new MsgBean(false,"账号不为空 ",false);
         }
         //主体,当前状态为没有认证的状态“未认证”
@@ -54,13 +89,20 @@ public class AdminUserConroller extends BaseController<User> {
             subject.login(token);
 
             tempuser = (User)subject.getPrincipal();
-            session.setAttribute("user",subject);
+
+            if(session.getAttribute("UserData")==null){
+                session.setAttribute("UserData",subject);
+            }
+
             logger.info("登录完成");
-            return new MsgBean(true,"登录完成 ",true);
+
+            return new MsgBean(true,"登录成功",true);
 
 
         } catch (AuthenticationException e) {
 
+
+//            model.addAttribute("message",new MsgBean(false,"账号密码不正确 ",false));
             return new MsgBean(false,"账号密码不正确 ",false);
         }
 
