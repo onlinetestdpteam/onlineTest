@@ -2,5 +2,6 @@
 <html>
 <body>
 <h2>首页</h2>
+<a href="${request.}/Admin/User/login"></a>
 </body>
 </html>

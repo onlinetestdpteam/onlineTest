@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/Admin")
+@RequestMapping("/")
 public class AdminSystemConroller {
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "Admin/",method = RequestMethod.GET)
     public String index(HttpSession session, Model model){
 
 
         return "admin/index";
     }
 
+    @RequestMapping(value = "adminlogin/",method = RequestMethod.GET)
+    public String Login(HttpSession session, Model model){
 
+
+        return "admin/login";
+    }
 }

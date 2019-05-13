@@ -55,12 +55,7 @@ public class AdminUserConroller extends BaseController<User> {
 
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String Login(HttpSession session, Model model){
 
-
-        return "admin/login";
-    }
 
 
 
