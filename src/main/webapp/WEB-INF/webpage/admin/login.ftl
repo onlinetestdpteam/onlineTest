@@ -45,8 +45,10 @@
             var data = {'uname':'admin', 'pwd':'123456'};
             // data.append('uname','admin');
             // data.append('pwd','123456');
-            axios.post('${request.contextPath}/Admin/User/login/', data).then(function (response) {
-                    console.log(response.data.status);
+            <#--axios.post('${request.contextPath}/Admin/User/login/', data).then(function (response) {-->
+
+            axios.get('${request.contextPath}/Admin/User/').then(function (response) {
+            console.log(response.data.status);
                     if(response.data.status){
                         // alert("成功!");
                         location.href="${request.contextPath}/Admin/";

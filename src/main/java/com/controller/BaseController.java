@@ -3,9 +3,23 @@ package com.controller;
 
 import com.service.BaseService;
 import com.model.MsgBean;
+import com.util.WebUtilsPro;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public abstract class BaseController<T> {
@@ -49,5 +63,57 @@ public abstract class BaseController<T> {
         baseService.setBaseDao(object);
         return baseService.deleteByPrimaryKey(id);
     }
+
+    @ExceptionHandler({ UnauthenticatedException.class, AuthenticationException.class })
+    @ResponseBody
+    public MsgBean authenticationException(HttpServletRequest request, HttpServletResponse response) {
+
+        if (WebUtilsPro.isAjaxRequest(request)) {
+            // 输出JSON
+
+
+            return new MsgBean(false,"没有登录",431);
+        }
+
+        try {
+            response.sendRedirect("/adminlogin/");
+        }catch (Exception e){
+
+            return new MsgBean(false,"没有登录",e.getMessage());
+        }
+
+        return new MsgBean(false,"没有登录",431);
+    }
+
+
+    @ExceptionHandler({ UnauthorizedException.class, AuthorizationException.class })
+    @ResponseBody
+    public MsgBean authorizationException(HttpServletRequest request, HttpServletResponse response) {
+        if (WebUtilsPro.isAjaxRequest(request)) {
+            // 输出JSON
+
+
+            return new MsgBean(false,"没有权限",435);
+        }
+        try {
+            response.sendRedirect("/permison/");
+        }catch (Exception e){
+
+            return new MsgBean(false,"没有权限",e.getMessage());
+        }
+
+        return new MsgBean(false,"没有权限",435);
+
+    }
+
+    /**
+     * 输出JSON
+     *
+     * @param response
+     * @author SHANHY
+     * @create 2017年4月4日
+     */
+
+
 
 }

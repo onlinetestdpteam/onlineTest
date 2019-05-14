@@ -14,28 +14,44 @@
 
 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
     <property name="securityManager" ref="securityManager" /> <!--加载管理器-->
-    <property name="loginUrl" value="/Admin/User/login" />    <!--没有登录的时候，跳转到这个页面-->
-    <property name="unauthorizedUrl" value="/User/nopermission" /> <!--当没有权限的时候，跳转到这个url-->
+    <property name="loginUrl" value="/adminlogin/" />    <!--没有登录的时候，跳转到这个页面-->
+    <property name="unauthorizedUrl" value="/nopermission/" /> <!--当没有权限的时候，跳转到这个url-->
+
+    <property name="filters">
+        <map>
+            <!--该Key值得使用在
+            自定义FilterChainDefinitionMapFactory类中字符串拼接
+            map.put(permission.getResource(), "perms["+permission.getSn()+"]");//需要判断权限的路径
+            -->
+            <entry key="perms">
+                <bean class="com.Shiro.ShiroPermsFilter"/>
+            </entry>
+        </map>
+    </property>
+
 
     <property name="filterChainDefinitions">
         <value>
-            /Mobile/User/login = anon <!--可以不需要登录-->
-            /Admin/User/login = anon <!--可以不需要登录-->
+            /login/ = anon <!--可以不需要登录-->
+            /rigister/ = anon
+            /adminlogin/ = anon <!--可以不需要登录-->
             <!--/user/readName = authc, perms[/readName]  &lt;!&ndash; perms 表示需要该权限才能访问的页面 &ndash;&gt;-->
             <!--/user/readData = authc, perms[/readData]-->
-            /Admin/Sitedata/* = authc <!-- authc 表示需要认证才能访问的页面 -->
+            /Admin/* = authc <!-- authc 表示需要认证才能访问的页面 -->
             /Admin/Score/* = authc
             /Admin/Subject/* = authc
             /Admin/Testing/* = authc
             /Admin/Testpaper/* = authc
             /Admin/TopicItem/* = authc
+            /Admin/User/* = authc
 
-            /Mobile/Sitedata/* = authc <!-- authc 表示需要认证才能访问的页面 -->
+            /Mobile/* = authc <!-- authc 表示需要认证才能访问的页面 -->
             /Mobile/Score/* = authc
             /Mobile/Subject/* = authc
             /Mobile/Testing/* = authc
             /Mobile/Testpaper/* = authc
             /Mobile/TopicItem/* = authc
+            /Mobile/User/* = authc
         </value>
     </property>
 </bean>

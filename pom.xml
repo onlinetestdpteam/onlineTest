@@ -76,6 +76,13 @@
       <version>1.10.5</version>
     </dependency>
 
+    <dependency>
+      <groupId>me.shib.java.lib</groupId>
+      <artifactId>jsonutils</artifactId>
+      <version>0.0.2</version>
+    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/ant/ant -->
     <dependency>
       <groupId>ant</groupId>

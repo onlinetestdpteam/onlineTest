@@ -24,4 +24,14 @@ public class AdminSystemConroller {
 
         return "admin/login";
     }
+
+    @RequestMapping(value = "permison/",method = RequestMethod.GET)
+    public String permison(HttpSession session, Model model){
+
+
+        return "system/403";
+    }
+
+
+
 }
