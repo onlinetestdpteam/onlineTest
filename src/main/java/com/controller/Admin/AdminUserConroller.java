@@ -59,49 +59,7 @@ public class AdminUserConroller extends BaseController<User> {
 
 
 
-    @RequestMapping(value = "/login/",method = RequestMethod.POST)
-    @ResponseBody
-    public MsgBean Login(@RequestBody User user, HttpSession session, Model model){
 
-        if(user.getUname()==null){
-
-//            model.addAttribute("message",new MsgBean(false,"账号不为空 ",false));
-//            return "admin/login";
-            return new MsgBean(false,"账号不为空 ",false);
-        }
-        //主体,当前状态为没有认证的状态“未认证”
-        Subject subject = SecurityUtils.getSubject();
-        // 登录后存放进shiro token
-        User tempuser;
-        //登录方法（认证是否通过）
-        //使用subject调用securityManager,安全管理器调用Realm
-        try {
-            //利用异常操作
-            //需要开始调用到Realm中
-            UsernamePasswordToken token=new UsernamePasswordToken(user.getUname(),user.getPwd());
-            logger.info("========================================");
-            logger.info("1、进入认证方法");
-            subject.login(token);
-
-            tempuser = (User)subject.getPrincipal();
-
-            if(session.getAttribute("UserData")==null){
-                session.setAttribute("UserData",subject);
-            }
-
-            logger.info("登录完成");
-
-            return new MsgBean(true,"登录成功",true);
-
-
-        } catch (AuthenticationException e) {
-
-
-//            model.addAttribute("message",new MsgBean(false,"账号密码不正确 ",false));
-            return new MsgBean(false,"账号密码不正确 ",false);
-        }
-
-    }
 
     @RequestMapping(value = "/loginout",method = RequestMethod.GET)
     @ResponseBody

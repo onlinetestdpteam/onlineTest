@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>首页</h2>
-<a href="${request.getContextPath()}/adminlogin/">后台首页</a>
+<a href="${request.contextPath}/Admin/">后台首页</a>
 </body>
 </html>
