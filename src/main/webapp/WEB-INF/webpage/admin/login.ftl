@@ -16,9 +16,9 @@
                     <h2>后台登录</h2>
                     <div class="login-form" id="login-form">
                         <form  method="post" id="loginform">
-                            <input type="text" name="uname" value="用户名...." required="">
+                            <input type="text" id="uname" name="uname" value="用户名...." required="">
 
-                            <input type="password" name="pwd" value="密码...." required="">
+                            <input type="password" id="pwd" name="pwd" value="密码...." required="">
 
                             <div class="tp">
                                 <input type="button" value="登录" id="submitBtn" class="btn btn-primary btn-lg">
@@ -41,16 +41,18 @@
 
         $("#submitBtn").click(function(){
 
-            // var data = new FormData();
-            var data = {'uname':'admin', 'pwd':'123456'};
-            // data.append('uname','admin');
-            // data.append('pwd','123456');
+
+            var username=document.getElementById("uname").value;
+            var password=document.getElementById("pwd").value;
+
+            var data = {'uname':username, 'pwd':password};
+
             axios.post('${request.contextPath}/adminlogin/', data).then(function (response) {
 
             <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
             console.log(response.data.status);
                     if(response.data.status){
-                        // alert("成功!");
+
                         location.href="${request.contextPath}/Admin/";
                     }else {
                         // confirm("失败!");

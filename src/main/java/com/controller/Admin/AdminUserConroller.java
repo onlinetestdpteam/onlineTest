@@ -22,7 +22,9 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -44,7 +46,13 @@ public class AdminUserConroller extends BaseController<User> {
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
-        map.put("comment","");
+
+        userService.setBaseDao(userMapper);
+        MsgBean userList=userService.selectAllByPage(1,5);
+        List<Map> tempList=(List<Map>) userList.getData();
+        Map tempManp=tempList.get(0);
+
+        map.put("userlist",tempManp.get("data"));
         try {
             reslut=FreemarkerUtils.getTemplate("admin/UserManager.ftl",map);
         }catch (Exception e){
@@ -56,39 +64,6 @@ public class AdminUserConroller extends BaseController<User> {
     }
 
 
-
-
-
-
-
-    @RequestMapping(value = "/loginout",method = RequestMethod.GET)
-    @ResponseBody
-    public MsgBean Loginout(){
-
-
-        //主体,当前状态为没有认证的状态“未认证”
-        Subject subject = SecurityUtils.getSubject();
-        // 登录后存放进shiro token
-
-        try {
-            //利用异常操作
-            //需要开始调用到Realm中
-
-            logger.info("========================================");
-            logger.info("退出登录。。。");
-
-            subject.logout();
-
-            logger.info("退出登录");
-            return new MsgBean(true,"登录完成 ",true);
-
-
-        } catch (AuthenticationException e) {
-
-            return new MsgBean(false,"退出失败 ",false);
-        }
-
-    }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
@@ -104,14 +79,14 @@ public class AdminUserConroller extends BaseController<User> {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean instertById(@ModelAttribute User user) {
+    public MsgBean instertById(@RequestBody  User user) {
         user.setId(new UUIDgenarater().getUUID());
         return super.instertById(user, userService,userMapper);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.PUT)
     @ResponseBody
-    public MsgBean updateByKey(@ModelAttribute User user) {
+    public MsgBean updateByKey(@RequestBody User user) {
         return super.updateByKey(user, userService,userMapper);
     }
 

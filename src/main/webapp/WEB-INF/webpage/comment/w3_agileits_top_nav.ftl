@@ -6,23 +6,24 @@
             <nav class="gn-menu-wrapper">
                 <div class="gn-scroller scrollbar1">
                     <ul class="gn-menu agile_menu_drop">
-                        <li><a href="/Admin/index"> <i class="fa fa-tachometer"></i> 首页</a></li>
-                        <li>
+                        <li><a href="${request.contextPath}/Admin/"> <i class="fa fa-tachometer"></i> 首页</a></li>
+                        <li id="testManager">
                             <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> 考试管理 </a>
 
                         </li>
-                        <li>
-                            <a href="paperManager"> <i class="fa fa-file-text-o" aria-hidden="true"></i>试卷管理 </a>
+                        <li id="paperManager">
+                            <a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i>试卷管理</a>
 
                         </li>
-                        <li id="userManager"> <i class="fa fa-table" aria-hidden="true"></i> 用户管理</li>
+                        <li id="userManager">
+                            <a href="#"><i class="fa fa-table" aria-hidden="true"></i> 用户管理</li></a>
 
                         <li id="topicManager">
-                             <i class="fa fa-line-chart" aria-hidden="true"></i> 试题管理
+                            <a href="#"> <i class="fa fa-line-chart" aria-hidden="true"></i> 试题管理</a>
                         </li>
 
-                        <li>
-
+                        <li id="quit">
+                            <a href="${request.contextPath}/Admin/quit/"> <i class="fa fa-line-chart" aria-hidden="true"></i> 用户退出</a>
                         </li>
                         <li>
 
@@ -103,11 +104,8 @@
                     $("#inner_content").html(response.data.data);
                 }else {
 
-                    console.log("失败!");
-                    // layer.open({
-                    //     type: 4,
-                    //    content: [response.data.msg, '#login-form'] //数组第二项即吸附元素选择器或者DOM
-                    // });
+                    confirm("失败!");
+
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -118,7 +116,7 @@
         $("#paperManager").click(function(){
 
 
-            axios.get('${request.contextPath}/Admin/User/').then(function (response) {
+            axios.get('${request.contextPath}/Admin/Testpaper/').then(function (response) {
                 console.log(response.data.status);
                 if(response.data.status){
 
@@ -127,10 +125,7 @@
                     $("#inner_content").html(response.data.data);
                 }else {
                     confirm("失败!");
-                    // layer.open({
-                    //     type: 4,
-                    //    content: [response.data.msg, '#login-form'] //数组第二项即吸附元素选择器或者DOM
-                    // });
+
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -138,6 +133,25 @@
 
         });
 
+        $("#testManager").click(function(){
+
+
+            axios.get('${request.contextPath}/Admin/Testing/').then(function (response) {
+                console.log(response.data.status);
+                if(response.data.status){
+
+                    <#--location.href="${request.contextPath}/Admin/";-->
+                    console.log(response.data.data);
+                    $("#inner_content").html(response.data.data);
+                }else {
+                    confirm("失败!");
+
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+        });
 
 
     });

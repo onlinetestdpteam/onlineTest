@@ -87,6 +87,16 @@ public class AdminSystemConroller extends BaseController {
         }
 
     }
+
+    @RequestMapping(value = "Admin/quit/",method = RequestMethod.GET)
+    public String adminloginout(HttpSession session, Model model){
+        session.removeAttribute("UserData");
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+
+        return "admin/login";
+    }
+
 //前台注册，后台不需要注册
     @RequestMapping(value = "register/",method = RequestMethod.POST)
     @ResponseBody
@@ -107,6 +117,51 @@ public class AdminSystemConroller extends BaseController {
 
 
         return "system/404";
+    }
+
+    @RequestMapping(value = "web/login",method = RequestMethod.GET)
+    public String login(HttpSession session, Model model){
+
+
+        return "login";
+    }
+
+    @RequestMapping(value = "web/exam",method = RequestMethod.GET)
+    public String exam(HttpSession session, Model model){
+
+
+        return "exam";
+    }
+
+
+    @RequestMapping(value = "web/kskm",method = RequestMethod.GET)
+    public String kskm(HttpSession session, Model model){
+
+
+        return "kskm";
+    }
+
+    @RequestMapping(value = "web/grade",method = RequestMethod.GET)
+    public String grade(HttpSession session, Model model){
+
+
+        return "grade";
+    }
+
+    @RequestMapping(value = "web/main",method = RequestMethod.GET)
+    public String main(HttpSession session, Model model){
+
+
+        return "main";
+    }
+
+
+
+    @RequestMapping(value = "web/paper",method = RequestMethod.GET)
+    public String paper(HttpSession session, Model model){
+
+
+        return "paper";
     }
 
 }

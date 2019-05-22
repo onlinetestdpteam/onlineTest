@@ -9,4 +9,10 @@
     where uname = #{name,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectByAllBypage" resultMap="BaseResultMap">
+    select
+    *
+    from user
+</select>
+
 </mapper>

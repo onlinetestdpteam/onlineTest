@@ -13,12 +13,12 @@
 
 
     <div class="inner_content_w3_agile_info two_in">
-        <h2 class="w3_inner_tittle">Tables</h2>
+        <h2 class="w3_inner_tittle">试题管理</h2>
         <!-- tables -->
 
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
-                <h3 class="w3_inner_tittle two">Basic Implementation</h3>
+                <h3 class="w3_inner_tittle two">试题列表</h3>
                 <table id="table">
                     <thead>
                     <tr>

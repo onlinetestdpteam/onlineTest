@@ -6,9 +6,16 @@ import com.dao.TestpaperMapper;
 import com.service.TestpaperService;
 import com.model.MsgBean;
 import com.model.Testpaper;
+import com.util.FreemarkerUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/Admin/Testpaper")
@@ -18,7 +25,25 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
     private TestpaperService testpaperService;
     @Autowired
     private TestpaperMapper testpaperMapper;
+    private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+        String reslut="";
+        Map<String,Object> map=new HashMap<>();
+        request.getContextPath();
+        map.put("request",request);
+        map.put("comment","");
+        try {
+            reslut= FreemarkerUtils.getTemplate("admin/paperManager.ftl",map);
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+
+        return new MsgBean(true,"返回页面成功！",reslut);
+
+    }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody

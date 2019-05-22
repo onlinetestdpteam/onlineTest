@@ -20,78 +20,303 @@
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
                 <h3 class="w3_inner_tittle two">用户列表</h3>
+                <button id="add" onclick="add()">增加用户</button>
                 <table id="table">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Height</th>
-                        <th>Province</th>
-                        <th>Sport</th>
+                        <th>用户名</th>
+                        <th>用户密码</th>
+                        <th>电话号码</th>
+                        <th>用户类型</th>
+
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <#list userlist as item>
                     <tr>
-                        <td>Jill Smith</td>
-                        <td>25</td>
-                        <td>Female</td>
-                        <td>5'4</td>
-                        <td>British Columbia</td>
-                        <td>Volleyball</td>
+                        <#if item.uname??>
+                        <td>${item.uname}</td>
+                            <#else>
+                                <td>没有信息</td>
+                        </#if>
+
+                        <#if item.pwd??>
+                            <td>${item.pwd}</td>
+                        <#else>
+                            <td>没有信息</td>
+                        </#if>
+
+                        <#if item.phone??>
+                            <td>${item.phone}</td>
+                        <#else>
+                            <td>没有信息</td>
+                        </#if>
+
+
+                            <td><#switch item.type>
+                                    <#case 0>学生<#break>
+                                    <#case 1>老师<#break>
+                                    <#case 2>管理员<#break>
+                                    <#default>没有信息
+                                </#switch></td>
+
+
+                        <td><button id="delbtn" onclick='del("${item.id}")'>删除</button>
+                            <button id="addbtn" onclick='edit("${item.id}")'>修改</button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>John Stone</td>
-                        <td>30</td>
-                        <td>Male</td>
-                        <td>5'9</td>
-                        <td>Ontario</td>
-                        <td>Badminton</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Strip</td>
-                        <td>29</td>
-                        <td>Female</td>
-                        <td>5'6</td>
-                        <td>Manitoba</td>
-                        <td>Hockey</td>
-                    </tr>
-                    <tr>
-                        <td>Gary Mountain</td>
-                        <td>21</td>
-                        <td>Male</td>
-                        <td>5'8</td>
-                        <td>Alberta</td>
-                        <td>Curling</td>
-                    </tr>
-                    <tr>
-                        <td>James Camera</td>
-                        <td>31</td>
-                        <td>Male</td>
-                        <td>6'1</td>
-                        <td>British Columbia</td>
-                        <td>Hiking</td>
-                    </tr>
+                    <#else>
+                        <td>没有用户信息</td>
+                    </#list>
+
+
                     </tbody>
                 </table>
 
-                <#--<code class="js">-->
-                    <#--$('#table').basictable();-->
-                <#--</code>-->
+
             </div>
 
 
         </div>
-        <!-- //tables -->
 
-        <!-- /social_media-->
 
     </div>
-    <!-- //inner_content_w3_agile_info-->
 
+
+<div id="userAddInfoForm" style="display:none;">
+    <div class="row">
+        <div class="col-xs-3" id="username">用户名</div>
+        <div class="col-xs-3"><input id="usernameinput"/></div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-3" id="userpassword">用户密码</div>
+        <div class="col-xs-3" ><input id="userpasswordinput"/></div>
+
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-3" id="phonenumber">电话号码</div>
+        <div class="col-xs-3" ><input id="phonenumberinput"/></div>
+
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-3" id="usertype">用户类型</div>
+        <div class="col-xs-3" >
+            <select id="usertypeinput">
+                <option value ="0">学生</option>
+                <option value ="1">教师</option>
+                <option value="2">管理员</option>
+            </select>
+        </div>
+
+    </div>
+    <br/>
+
+    <br/>
+    <div class="row">
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" >提交</button></div><div class="col-xs-3"/>
+    </div>
+
+
+
+</div>
+
+
+
+    <div id="userEditInfoForm" style="display:none;">
+        <div class="row">
+            <div class="col-xs-3" id="username">用户名</div>
+            <div class="col-xs-3"><input id="editusernameinput"/></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xs-3" id="userpassword">用户密码</div>
+            <div class="col-xs-3" ><input id="edituserpasswordinput"/></div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xs-3" id="phonenumber">电话号码</div>
+            <div class="col-xs-3" ><input id="editphonenumberinput"/></div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xs-3" id="usertype">用户类型</div>
+            <div class="col-xs-3" >
+                <select id="editusertypeinput">
+                    <option value ="0">学生</option>
+                    <option value ="1">教师</option>
+                    <option value="2">管理员</option>
+                </select>
+            </div>
+
+        </div>
+        <br/>
+
+        <br/>
+        <div class="row">
+            <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn">提交</button></div><div class="col-xs-3"/>
+        </div>
+    </div>
 
 <script type="text/javascript">
+
+    var tempuserid="";
+
+    function reload() {
+        axios.get('${request.contextPath}/Admin/User/').then(function (response) {
+            console.log(response);
+            if(response.data.status){
+
+
+                console.log(response.data.data);
+                $("#inner_content").html(response.data.data);
+            }else {
+                confirm("失败!");
+
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+        return;
+    }
+    function del(id) {
+
+
+        axios.delete('${request.contextPath}/Admin/User/'+id).then(function (response) {
+
+        <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
+        console.log(response.data.status);
+        if(response.data.status){
+            layer.alert('删除成功！', {icon: 6});
+            reload();
+        }else {
+        // confirm("失败!");
+            layer.alert('删除失败', {icon: 6});
+            reload();
+        }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
+    function add() {
+
+        layer.open({
+            type: 1,
+            offset: 'auto',
+            area:['500px', '360px'],
+            content: $('#userAddInfoForm').show() //这里content是一个普通的String
+        });
+
+
+    }
+
+    function addSubmit() {
+        $('#userAddInfoForm').hide();
+        var username=$('#usernameinput').val();
+        var pwd=$('#userpasswordinput').val();
+        var phone=$('#phonenumberinput').val();
+        var type=$('#usertypeinput').val();
+
+        var userData ={'uname':username,'pwd':pwd,'status':1,'phone':phone,'type':type};
+        alert(username+" "+pwd+" "+phone+" "+type);
+        axios.post('${request.contextPath}/Admin/User/',userData).then(function (response) {
+
+        <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
+        console.log(response.data.status);
+        if(response.data.status){
+        layer.alert('添加成功！', {icon: 6});
+        reload();
+        }else {
+        // confirm("失败!");
+        layer.alert('添加失败', {icon: 6});
+        reload();
+        }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
+
+    function edit(id) {
+        tempuserid=id;
+        var respondata="";
+        axios.get('${request.contextPath}/Admin/User/'+id).then(function (response) {
+
+            if(response.data.status){
+                respondata=response.data.data;
+                $('#editusernameinput').val(respondata.uname);
+                $('#edituserpasswordinput').val(respondata.pwd);
+               $('#editphonenumberinput').val(respondata.phone);
+                $('#editusertypeinput').val(respondata.type);
+            }else {
+                // confirm("失败!");
+                layer.alert('获取信息失败!', {icon: 6});
+                reload();
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+        layer.open({
+            type: 1,
+            offset: 'auto',
+            area:['500px', '360px'],
+            content: $('#userEditInfoForm').show()
+        });
+
+    }
+
+    function editSubmit() {
+
+        var username=$('#editusernameinput').val();
+        var pwd=$('#edituserpasswordinput').val();
+        var phone=$('#editphonenumberinput').val();
+        var type=$('#editusertypeinput').val();
+
+        var userData ={'id':tempuserid,'uname':username,'pwd':pwd,'status':1,'phone':phone,'type':type};
+
+        axios.put('${request.contextPath}/Admin/User/',userData).then(function (response) {
+
+
+            console.log(response.data.status);
+            if(response.data.status){
+                // layer.alert('修改成功！', {icon: 6});
+                $('#userEditInfoForm').hide();
+                reload();
+            }else {
+                // confirm("失败!");
+                $('#userEditInfoForm').hide();
+                layer.alert('修改失败', {icon: 6});
+                reload();
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
     $(document).ready(function() {
+
+
+        $("#addSubmitBtn").click(function(){
+                addSubmit();
+        }
+        );
+
+        $("#editSubmitBtn").click(function(){
+            editSubmit();
+            }
+        );
+
         $('#table').basictable();
 
         $('#table-breakpoint').basictable({
@@ -115,5 +340,10 @@
         $('#table-max-height').basictable({
             tableWrapper: true
         });
+
+
+
+
+
     });
 </script>
