@@ -3,15 +3,28 @@ package com.model;
 import java.util.Date;
 
 public class Testpaper {
+
     private String id;
 
     private String papername;
 
     private String topictlist;
 
-    private Date totaltime;
+    private String totaltime;
 
-    private Integer subject;
+    private String subject;
+
+    public Testpaper() {
+
+    }
+
+    public Testpaper(String id, String papername, String topictlist, String totaltime, String subject) {
+        this.id = id;
+        this.papername = papername;
+        this.topictlist = topictlist;
+        this.totaltime = totaltime;
+        this.subject = subject;
+    }
 
     public String getId() {
         return id;
@@ -37,19 +50,19 @@ public class Testpaper {
         this.topictlist = topictlist == null ? null : topictlist.trim();
     }
 
-    public Date getTotaltime() {
+    public String getTotaltime() {
         return totaltime;
     }
 
-    public void setTotaltime(Date totaltime) {
+    public void setTotaltime(String totaltime) {
         this.totaltime = totaltime;
     }
 
-    public Integer getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(Integer subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 }

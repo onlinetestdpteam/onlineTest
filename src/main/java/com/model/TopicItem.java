@@ -12,17 +12,27 @@ public class TopicItem {
     private String type;
     private String ansItems;
     private String answer;
-
+    private String subject;
     public TopicItem() {
 
     }
 
-    public TopicItem(String id, String description, String type, String ansItems, String answer) {
+    public TopicItem(String id, String description, String title, String type, String ansItems, String answer, String subject) {
         this.id = id;
         this.description = description;
+        this.title = title;
         this.type = type;
         this.ansItems = ansItems;
         this.answer = answer;
+        this.subject = subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getTitle() {

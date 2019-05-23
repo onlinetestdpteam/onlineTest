@@ -58,6 +58,7 @@ public class TopicItemServiceImpl implements TopicItemService {
         update.set("description", entity.getDescription());
         update.set("title", entity.getTitle());
         update.set("type", entity.getType());
+        update.set("subject", entity.getSubject());
         update.set("ansItems", entity.getAnsItems());
         update.set("answer", entity.getAnswer());
 

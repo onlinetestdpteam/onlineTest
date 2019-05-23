@@ -54,12 +54,17 @@
                         </#if>
 
 
-                            <td><#switch item.type>
+                            <td>
+                        <#if item.type??>
+                                <#switch item.type>
                                     <#case 0>学生<#break>
                                     <#case 1>老师<#break>
                                     <#case 2>管理员<#break>
-                                    <#default>没有信息
-                                </#switch></td>
+                                </#switch>
+                                <#else>
+                        没有信息
+                        </#if>
+                            </td>
 
 
                         <td><button id="delbtn" onclick='del("${item.id}")'>删除</button>
@@ -166,7 +171,7 @@
 <script type="text/javascript">
 
     var tempuserid="";
-
+    var useradddilog;
     function reload() {
         axios.get('${request.contextPath}/Admin/User/').then(function (response) {
             console.log(response);
@@ -207,7 +212,7 @@
 
     function add() {
 
-        layer.open({
+        useradddilog=layer.open({
             type: 1,
             offset: 'auto',
             area:['500px', '360px'],
@@ -231,10 +236,13 @@
         <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
         console.log(response.data.status);
         if(response.data.status){
+            layer.close(useradddilog);
         layer.alert('添加成功！', {icon: 6});
+
         reload();
         }else {
         // confirm("失败!");
+            layer.close(useradddilog);
         layer.alert('添加失败', {icon: 6});
         reload();
         }
@@ -244,7 +252,7 @@
         });
     }
 
-
+    var usereditdilog;
     function edit(id) {
         tempuserid=id;
         var respondata="";
@@ -265,7 +273,7 @@
             .catch(function (error) {
                 console.log(error);
             });
-        layer.open({
+        usereditdilog=layer.open({
             type: 1,
             offset: 'auto',
             area:['500px', '360px'],
@@ -289,10 +297,12 @@
             console.log(response.data.status);
             if(response.data.status){
                 // layer.alert('修改成功！', {icon: 6});
+                layer.close(usereditdilog);
                 $('#userEditInfoForm').hide();
                 reload();
             }else {
                 // confirm("失败!");
+                layer.close(usereditdilog);
                 $('#userEditInfoForm').hide();
                 layer.alert('修改失败', {icon: 6});
                 reload();

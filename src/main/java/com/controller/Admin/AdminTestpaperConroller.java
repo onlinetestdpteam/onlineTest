@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -34,7 +35,13 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
-        map.put("comment","");
+
+        testpaperService.setBaseDao(testpaperMapper);
+        MsgBean paperList=testpaperService.selectAllByPage(1,5);
+        List<Map> tempList=(List<Map>) paperList.getData();
+        Map tempManp=tempList.get(0);
+
+        map.put("paperlist",tempManp.get("data"));
         try {
             reslut= FreemarkerUtils.getTemplate("admin/paperManager.ftl",map);
         }catch (Exception e){
@@ -59,14 +66,14 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean instertById(@ModelAttribute Testpaper testpaper) {
+    public MsgBean instertById(@RequestBody Testpaper testpaper) {
         testpaper.setId(new UUIDgenarater().getUUID());
         return super.instertById(testpaper, testpaperService,testpaperMapper);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.PUT)
     @ResponseBody
-    public MsgBean updateByKey(@ModelAttribute Testpaper testpaper) {
+    public MsgBean updateByKey(@RequestBody Testpaper testpaper) {
         return super.updateByKey(testpaper, testpaperService,testpaperMapper);
     }
 

@@ -34,7 +34,14 @@ public class AdminTopicItemConroller {
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
-        map.put("comment","");
+        List<TopicItem> topicItemList=new ArrayList<TopicItem>();
+
+        try {
+        topicItemList=topicItemService.quryAll(0,5);
+        }catch (Exception e){
+            logger.error(e.toString());
+        }
+        map.put("topicList",topicItemList);
         try {
             reslut= FreemarkerUtils.getTemplate("admin/topicManager.ftl",map);
         }catch (Exception e){
@@ -81,7 +88,7 @@ public class AdminTopicItemConroller {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean instert(@ModelAttribute TopicItem topicItem) {
+    public MsgBean instert(@RequestBody TopicItem topicItem) {
         topicItem.setId(new UUIDgenarater().getUUID());
         try {
             topicItemService.insert(topicItem);
@@ -94,7 +101,7 @@ public class AdminTopicItemConroller {
 
     @RequestMapping(value = "/",method = RequestMethod.PUT)
     @ResponseBody
-    public MsgBean updateByKey(@ModelAttribute TopicItem topicItem) {
+    public MsgBean updateByKey(@RequestBody TopicItem topicItem) {
 
 
 
@@ -114,9 +121,9 @@ public class AdminTopicItemConroller {
 
 
         try {
-            topicItemService.delete(new TopicItem(id,"","","",""));
+            topicItemService.delete(new TopicItem(id,"","","","","",""));
         }catch (Exception e){
-            return new MsgBean(true,"删除失败",e.getMessage());
+            return new MsgBean(false,"删除失败",e.getMessage());
         }
         return new MsgBean(true,"删除成功",true);
 

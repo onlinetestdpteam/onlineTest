@@ -7,9 +7,7 @@ public class Testing {
 
     private String testname;
 
-    private Integer testpaperid;
-
-    private String stuid;
+    private String testpaperid;
 
     private Date starttime;
 
@@ -33,20 +31,12 @@ public class Testing {
         this.testname = testname == null ? null : testname.trim();
     }
 
-    public Integer getTestpaperid() {
+    public String getTestpaperid() {
         return testpaperid;
     }
 
-    public void setTestpaperid(Integer testpaperid) {
+    public void setTestpaperid(String testpaperid) {
         this.testpaperid = testpaperid;
-    }
-
-    public String getStuid() {
-        return stuid;
-    }
-
-    public void setStuid(String stuid) {
-        this.stuid = stuid == null ? null : stuid.trim();
     }
 
     public Date getStarttime() {
