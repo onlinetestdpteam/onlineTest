@@ -2,9 +2,15 @@ package com.controller.Admin;
 
 import com.UUID.UUIDgenarater;
 import com.controller.BaseController;
+import com.dao.TestingMapper;
+import com.dao.TestpaperMapper;
 import com.dao.UserMapper;
 import com.model.MsgBean;
+import com.model.Testing;
+import com.model.Testpaper;
 import com.model.User;
+import com.service.TestingService;
+import com.service.TestpaperService;
 import com.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -16,8 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -29,6 +39,15 @@ public class AdminSystemConroller extends BaseController {
     private UserService userService;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private TestingService testingService;
+    @Autowired
+    private TestingMapper testingMapper;
+
+    @Autowired
+    private TestpaperService testpaperService;
+    @Autowired
+    private TestpaperMapper testpaperMapper;
 
     @RequestMapping(value = "Admin/",method = RequestMethod.GET)
     public String index(HttpSession session, Model model){
@@ -44,10 +63,7 @@ public class AdminSystemConroller extends BaseController {
         return "admin/login";
     }
 
-    @RequestMapping(value = "adminlogin/",method = RequestMethod.POST)
-    @ResponseBody
-    public MsgBean Login(@RequestBody User user, HttpSession session, Model model){
-
+    public MsgBean comLogin(User user, HttpSession session,Boolean isweb){
         if(user.getUname()==null){
 
 //            model.addAttribute("message",new MsgBean(false,"账号不为空 ",false));
@@ -70,7 +86,7 @@ public class AdminSystemConroller extends BaseController {
 
             tempuser = (User)subject.getPrincipal();
 
-            if(session.getAttribute("UserData")==null){
+            if(session.getAttribute("UserData")==null&&isweb){
                 session.setAttribute("UserData",subject);
             }
 
@@ -85,6 +101,14 @@ public class AdminSystemConroller extends BaseController {
 //            model.addAttribute("message",new MsgBean(false,"账号密码不正确 ",false));
             return new MsgBean(false,"账号密码不正确 ",false);
         }
+
+    }
+
+    @RequestMapping(value = "adminlogin/",method = RequestMethod.POST)
+    @ResponseBody
+    public MsgBean Login(@RequestBody User user, HttpSession session, Model model){
+
+        return comLogin(user,session,true);
 
     }
 
@@ -119,11 +143,19 @@ public class AdminSystemConroller extends BaseController {
         return "system/404";
     }
 
-    @RequestMapping(value = "web/login",method = RequestMethod.GET)
+    @RequestMapping(value = "web/loginpage",method = RequestMethod.GET)
     public String login(HttpSession session, Model model){
 
 
         return "login";
+    }
+
+    @RequestMapping(value = "web/login/",method = RequestMethod.POST)
+    @ResponseBody
+    public MsgBean userlogin(@RequestBody User user, HttpSession session, Model model){
+
+
+        return comLogin(user,session,true);
     }
 
     @RequestMapping(value = "web/exam",method = RequestMethod.GET)
@@ -135,10 +167,17 @@ public class AdminSystemConroller extends BaseController {
 
 
     @RequestMapping(value = "web/kskm",method = RequestMethod.GET)
-    public String kskm(HttpSession session, Model model){
+    public ModelAndView kskm(HttpSession session, Model model){
+        ModelAndView modelAndView=new ModelAndView();
+        testingService.setBaseDao(testingMapper);
+        MsgBean testingM=testingService.selectAllByPage(1,5);
+        List<Map> testingList=(List<Map>)testingM.getData();
+        Map map=testingList.get(0);
 
+        modelAndView.addObject("testlist",map.get("data"));
 
-        return "kskm";
+        modelAndView.setViewName("kskm");
+        return modelAndView;
     }
 
     @RequestMapping(value = "web/grade",method = RequestMethod.GET)
@@ -149,19 +188,26 @@ public class AdminSystemConroller extends BaseController {
     }
 
     @RequestMapping(value = "web/main",method = RequestMethod.GET)
-    public String main(HttpSession session, Model model){
+    public ModelAndView main(HttpSession session, Model model){
 
 
-        return "main";
+        ModelAndView modelAndView=new ModelAndView();
+//        modelAndView.addObject("user",session.getAttribute("UserData"));
+        modelAndView.setViewName("main");
+        return modelAndView;
     }
 
 
 
-    @RequestMapping(value = "web/paper",method = RequestMethod.GET)
-    public String paper(HttpSession session, Model model){
+    @RequestMapping(value = "web/paper/{id}",method = RequestMethod.GET)
+    public ModelAndView paper(@PathVariable("id")String id,HttpSession session, Model model){
+        ModelAndView modelAndView=new ModelAndView();
 
+        List<Testpaper> testpaperList=testpaperService.selectByTestid(id);
+        modelAndView.addObject("paperlist",testpaperList);
 
-        return "paper";
+        modelAndView.setViewName("paper");
+        return modelAndView;
     }
 
 }

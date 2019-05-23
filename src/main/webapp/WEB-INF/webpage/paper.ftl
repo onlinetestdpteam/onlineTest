@@ -15,6 +15,11 @@
             </div>
             <select class="form-control" style="width: 960px" id="paperTitle">
                 <option value="">请选择试卷</option>
+                <#if paperlist??>
+                <#list paperlist as paperItem>
+                <option value="${paperItem.id}">${paperItem.papername}</option>
+                </#list>
+                </#if>
                 <#--<c:forEach items="${papers}" var="item">-->
                     <#--<option value="${item.id}">${item.name}</option>-->
                 <#--</c:forEach>-->
@@ -46,6 +51,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function onTest() {
+            var paperid=document.getElementById("paperTitle").value;
+            // confirm(paperid);
+            location.href=""+paperid;
+        }
+    </script>
+
     <#include "./forecomment/footer.ftl">
 
 </body>

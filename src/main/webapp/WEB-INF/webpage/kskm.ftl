@@ -11,25 +11,29 @@
 
     <div class="content-grid">
         <img src="${request.contextPath}/static/images/fenlei02.png" style="margin-left: -29px">
+
+
+
+
         <table class="content-table">
-            <#--<c:choose>-->
-                <#--<c:when test="${not empty subjects }">-->
-                    <#--<c:forEach items="${subjects }" var="subject" varStatus="vs">-->
-                        <#--<c:if test="${vs.index % 4 == 0 }">-->
-                            <#--<c:set var="flagIndex" value="${vs.index + 4}"></c:set>-->
-                            <#--<tr>-->
-                        <#--</c:if>-->
-                        <#--<td>-->
-                            <#--<a class="table-kskm" style="color: #a94442"-->
-                               <#--href="${basePath}/paper?subjectid=${subject.id}">${subject.subject}</a>-->
-                            <#--<div class="table-jiankao">监考老师—${subject.teacher}</div>-->
-                        <#--</td>-->
-                        <#--<c:if test="${(vs.index eq flagIndex)||vs.last}">-->
-                            <#--</tr>-->
-                        <#--</c:if>-->
-                    <#--</c:forEach>-->
-                <#--</c:when>-->
-            <#--</c:choose>-->
+
+
+            <tr>
+                <#if testlist??>
+                <#list testlist as testItem>
+            <td>
+            <a class="table-kskm" style="color: #a94442"
+            href="${request.contextPath}/web/paper/${testItem.id}">${testItem.testname}</a>
+            <div class="table-jiankao">考试方式：
+                <#switch testItem.type>
+                <#case 0>实时考试<#break>
+                <#case 1>模拟考试<#break>
+                <#default >类别错误
+                </#switch></div>
+            </td>
+                </#list>
+                </#if>
+            </tr>
         </table>
     </div>
     <#include "./forecomment/footer.ftl">

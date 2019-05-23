@@ -74,6 +74,8 @@
 
 </script>
 <script src="${request.contextPath}/static/js/common.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 <script>
 
     function exam() {

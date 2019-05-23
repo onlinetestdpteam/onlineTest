@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TestpaperServiceImpl extends BaseServiceImpl<Testpaper> implements TestpaperService {
@@ -21,5 +23,10 @@ public class TestpaperServiceImpl extends BaseServiceImpl<Testpaper> implements 
     public void setBaseDao(Object object) {
         this.testpaperMapper=(TestpaperMapper)object;
         super.setBaseDao(this.testpaperMapper);
+    }
+
+    @Override
+    public List<Testpaper> selectByTestid(String id) {
+        return testpaperMapper.selectByTestid(id);
     }
 }

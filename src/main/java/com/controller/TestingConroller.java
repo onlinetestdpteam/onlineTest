@@ -22,6 +22,7 @@ public class TestingConroller extends BaseController<Testing> {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryById(@PathVariable("id")String id) {
+
         return super.queryById(id, testingService,testingMapper);
     }
 

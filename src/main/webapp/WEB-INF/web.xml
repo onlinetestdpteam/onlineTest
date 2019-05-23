@@ -41,10 +41,10 @@
 
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>/web/login</url-pattern>
+    <url-pattern>/web/loginpage</url-pattern>
   </servlet-mapping>
 <welcome-file-list>
-  <welcome-file>web/login</welcome-file>
+  <welcome-file>web/loginpage</welcome-file>
 </welcome-file-list>
   <!-- 加载log4j配置文件 -->
   <!--log4j2-begin-->

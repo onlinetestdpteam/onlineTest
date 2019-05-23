@@ -8,5 +8,11 @@
     *
     from testpaper
 </select>
-
+  <select id="selectByTestid" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    *
+    from testpaper where testpaper.id in (
+    select testing.testpaperid from testing where testing.id=#{id,jdbcType=VARCHAR}
+    )
+</select>
 </mapper>
