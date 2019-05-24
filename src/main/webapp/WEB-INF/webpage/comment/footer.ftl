@@ -161,65 +161,41 @@
         "type": "serial",
         "startDuration": 2,
         "dataProvider": [{
-            "country": "USA",
+            "subject": "Java试题数",
             "visits": 4025,
             "color": "#FF0F00"
         }, {
-            "country": "China",
+            "subject": "C++试题数",
             "visits": 1882,
             "color": "#FF6600"
         }, {
-            "country": "Japan",
+            "subject": "C试题数",
             "visits": 1809,
             "color": "#FF9E01"
         }, {
-            "country": "Germany",
+            "subject": "PHP试题数",
             "visits": 1322,
             "color": "#FCD202"
         }, {
-            "country": "UK",
+            "subject": "Python试题数",
             "visits": 1122,
             "color": "#F8FF01"
         }, {
-            "country": "France",
+            "subject": "Go试题数",
             "visits": 1114,
             "color": "#B0DE09"
         }, {
-            "country": "India",
+            "subject": "Scala试题数",
             "visits": 984,
             "color": "#04D215"
         }, {
-            "country": "Spain",
+            "subject": "数据库系统原理",
             "visits": 711,
             "color": "#0D8ECF"
         }, {
-            "country": "Netherlands",
+            "subject": "操作系统原理",
             "visits": 665,
             "color": "#0D52D1"
-        }, {
-            "country": "Russia",
-            "visits": 580,
-            "color": "#2A0CD0"
-        }, {
-            "country": "South Korea",
-            "visits": 443,
-            "color": "#8A0CCF"
-        }, {
-            "country": "Canada",
-            "visits": 441,
-            "color": "#CD0D74"
-        }, {
-            "country": "Brazil",
-            "visits": 395,
-            "color": "#754DEB"
-        }, {
-            "country": "Italy",
-            "visits": 386,
-            "color": "#DDDDDD"
-        }, {
-            "country": "Taiwan",
-            "visits": 338,
-            "color": "#333333"
         }],
         "valueAxes": [{
             "position": "left",
@@ -242,7 +218,7 @@
             "cursorAlpha": 0,
             "zoomable": false
         },
-        "categoryField": "country",
+        "categoryField": "subject",
         "categoryAxis": {
             "gridPosition": "start",
             "axisAlpha":0,

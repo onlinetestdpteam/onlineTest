@@ -43,7 +43,6 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
 
         tempList=(List<Map>) paperList.getData();
 
-
         Map tempManp=tempList.get(0);
 
         map.put("paperlist",tempManp.get("data"));

@@ -93,7 +93,7 @@ public class AdminSystemConroller extends BaseController {
                 session.setAttribute("UserData",subject);
             }
 
-            logger.info("登录完成");
+                logger.info("登录完成");
 
             return new MsgBean(true,"登录成功",true);
 
