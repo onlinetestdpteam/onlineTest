@@ -2,16 +2,12 @@ package com.controller.Admin;
 
 import com.UUID.UUIDgenarater;
 import com.controller.BaseController;
+import com.dao.ScoreMapper;
 import com.dao.TestingMapper;
 import com.dao.TestpaperMapper;
 import com.dao.UserMapper;
-import com.model.MsgBean;
-import com.model.Testing;
-import com.model.Testpaper;
-import com.model.User;
-import com.service.TestingService;
-import com.service.TestpaperService;
-import com.service.UserService;
+import com.model.*;
+import com.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -45,9 +41,16 @@ public class AdminSystemConroller extends BaseController {
     private TestingMapper testingMapper;
 
     @Autowired
+    private ScoreService scoreService;
+    @Autowired
+    private ScoreMapper scoreMapper;
+
+    @Autowired
     private TestpaperService testpaperService;
     @Autowired
     private TestpaperMapper testpaperMapper;
+    @Autowired
+    private TopicItemService topicItemService;
 
     @RequestMapping(value = "Admin/",method = RequestMethod.GET)
     public String index(HttpSession session, Model model){
@@ -158,11 +161,29 @@ public class AdminSystemConroller extends BaseController {
         return comLogin(user,session,true);
     }
 
-    @RequestMapping(value = "web/exam",method = RequestMethod.GET)
-    public String exam(HttpSession session, Model model){
+    @RequestMapping(value = "web/loginout",method = RequestMethod.GET)
+    public String userloginout(HttpSession session, Model model){
 
+        session.removeAttribute("UserData");
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
 
-        return "exam";
+        return "login";
+    }
+
+    @RequestMapping(value = "web/exam/{id}",method = RequestMethod.GET)
+    public ModelAndView exam(@PathVariable("id")String id,HttpSession session, Model model) throws Exception{
+        ModelAndView modelAndView=new ModelAndView();
+        testpaperService.setBaseDao(testpaperMapper);
+        MsgBean testingM=testpaperService.selectById(id);
+        Testpaper testpaper=(Testpaper)testingM.getData();
+
+        List<TopicItem> topicItemList=topicItemService.quryBySubject(testpaper.getSubject(),"0",0,50);
+        modelAndView.addObject("testpaper",testpaper);
+        modelAndView.addObject("topicItemList",topicItemList);
+        modelAndView.addObject("tesstingId",id);
+        modelAndView.setViewName("exam");
+        return modelAndView;
     }
 
 
@@ -180,12 +201,7 @@ public class AdminSystemConroller extends BaseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "web/grade",method = RequestMethod.GET)
-    public String grade(HttpSession session, Model model){
 
-
-        return "grade";
-    }
 
     @RequestMapping(value = "web/main",method = RequestMethod.GET)
     public ModelAndView main(HttpSession session, Model model){
@@ -209,5 +225,20 @@ public class AdminSystemConroller extends BaseController {
         modelAndView.setViewName("paper");
         return modelAndView;
     }
+
+
+    @RequestMapping(value = "web/grade",method = RequestMethod.GET)
+    public String grade(HttpSession session, Model model){
+
+
+        User login = (User) SecurityUtils.getSubject().getPrincipal();
+        String userid=login.getId();
+
+        List<Score> scoreList=scoreService.selectByAllByUserId(userid);
+        model.addAttribute("scoreList",scoreList);
+
+        return "grade";
+    }
+
 
 }

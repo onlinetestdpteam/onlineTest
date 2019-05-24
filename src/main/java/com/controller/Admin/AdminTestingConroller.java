@@ -3,17 +3,25 @@ package com.controller.Admin;
 import com.UUID.UUIDgenarater;
 import com.controller.BaseController;
 import com.dao.TestingMapper;
+import com.dao.TestpaperMapper;
+import com.model.Testpaper;
+import com.model.TopicItem;
 import com.service.TestingService;
 import com.model.MsgBean;
 import com.model.Testing;
+import com.service.TestpaperService;
+import com.service.TopicItemService;
 import com.util.FreemarkerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +35,12 @@ public class AdminTestingConroller extends BaseController<Testing> {
     @Autowired
     private TestingMapper testingMapper;
 
+    @Autowired
+    private TestpaperService testpaperService;
+    @Autowired
+    private TestpaperMapper testpaperMapper;
+    @Autowired
+    private TopicItemService topicItemService;
 
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
@@ -53,6 +67,20 @@ public class AdminTestingConroller extends BaseController<Testing> {
 
     }
 
+    @RequestMapping(value = "/exam/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean exam(@PathVariable("id")String id, HttpSession session, Model model) throws Exception{
+        ModelAndView modelAndView=new ModelAndView();
+        testpaperService.setBaseDao(testpaperMapper);
+        MsgBean testingM=testpaperService.selectById(id);
+        Testpaper testpaper=(Testpaper)testingM.getData();
+
+        List<TopicItem> topicItemList=topicItemService.quryBySubject(testpaper.getSubject(),"0",0,50);
+
+
+        MsgBean msgBean=new MsgBean(true,"返回数据成功",topicItemList);
+        return msgBean;
+    }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody

@@ -17,7 +17,7 @@ public interface ScoreMapper extends BaseDao<Score>{
     int insertSelective(Score record);
 
     List<Score> selectByExample(ScoreExample example);
-
+    List<Score> selectByAllByUserId(String userid);
     Score selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Score record, @Param("example") ScoreExample example);

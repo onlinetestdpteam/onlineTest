@@ -10,21 +10,59 @@ public class TopicItem {
     private String description;
     private String title;
     private String type;
-    private String ansItems;
+    private String ansItemsA;
+    private String ansItemsB;
+    private String ansItemsC;
+    private String ansItemsD;
     private String answer;
     private String subject;
     public TopicItem() {
 
     }
 
-    public TopicItem(String id, String description, String title, String type, String ansItems, String answer, String subject) {
+    public TopicItem(String id, String description, String title, String type, String ansItemsA, String ansItemsB, String ansItemsC, String ansItemsD, String answer, String subject) {
         this.id = id;
         this.description = description;
         this.title = title;
         this.type = type;
-        this.ansItems = ansItems;
+        this.ansItemsA = ansItemsA;
+        this.ansItemsB = ansItemsB;
+        this.ansItemsC = ansItemsC;
+        this.ansItemsD = ansItemsD;
         this.answer = answer;
         this.subject = subject;
+    }
+
+    public String getAnsItemsA() {
+        return ansItemsA;
+    }
+
+    public void setAnsItemsA(String ansItemsA) {
+        this.ansItemsA = ansItemsA;
+    }
+
+    public String getAnsItemsB() {
+        return ansItemsB;
+    }
+
+    public void setAnsItemsB(String ansItemsB) {
+        this.ansItemsB = ansItemsB;
+    }
+
+    public String getAnsItemsC() {
+        return ansItemsC;
+    }
+
+    public void setAnsItemsC(String ansItemsC) {
+        this.ansItemsC = ansItemsC;
+    }
+
+    public String getAnsItemsD() {
+        return ansItemsD;
+    }
+
+    public void setAnsItemsD(String ansItemsD) {
+        this.ansItemsD = ansItemsD;
     }
 
     public String getSubject() {
@@ -67,13 +105,6 @@ public class TopicItem {
         this.type = type;
     }
 
-    public String getAnsItems() {
-        return ansItems;
-    }
-
-    public void setAnsItems(String ansItems) {
-        this.ansItems = ansItems;
-    }
 
     public String getAnswer() {
         return answer;

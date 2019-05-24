@@ -23,6 +23,7 @@
                 <table id="table">
                     <thead>
                     <tr>
+                        <th>试卷ID</th>
                         <th>试卷名</th>
                         <th>科目</th>
                         <th>考试用时</th>
@@ -33,6 +34,11 @@
                     <tbody>
                     <#list paperlist as item>
                         <tr>
+                        <#if (item.id)??>
+                            <td>${item.id}</td>
+                        <#else>
+                            <td>没有信息</td>
+                        </#if>
                             <#if (item.papername)??>
                                 <td>${item.papername}</td>
                             <#else>

@@ -17,6 +17,7 @@
         <mapper resource="mapper/selfCreatMapper/TestpaperMapperEx.xml"/>
 
         <mapper resource="mapper/selfCreatMapper/TestingMapperEx.xml"/>
+        <mapper resource="mapper/selfCreatMapper/ScoreMapperEx.xml"/>
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
         <!--<mapper resource="classpath:mapper/selfCreatMapper/*.xml"/>-->
     </mappers>

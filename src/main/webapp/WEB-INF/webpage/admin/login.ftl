@@ -22,6 +22,7 @@
 
                             <div class="tp">
                                 <input type="button" value="登录" id="submitBtn" class="btn btn-primary btn-lg">
+                                <a href="${request.contextPath}/">返回前台登录？</a>
                             </div>
 
                         </form>

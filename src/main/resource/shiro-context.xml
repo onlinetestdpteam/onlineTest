@@ -35,9 +35,9 @@
             /login/ = anon <!--可以不需要登录-->
             /rigister/ = anon
             /adminlogin/ = anon <!--可以不需要登录-->
-            /web/kskm = anon
-            /web/grade = anon
-            /web/main = anon
+            /web/kskm = authc
+            /web/grade = authc
+            /web/main = authc
 
             /web/paper = anon
             <!--/user/readName = authc, perms[/readName]  &lt;!&ndash; perms 表示需要该权限才能访问的页面 &ndash;&gt;-->

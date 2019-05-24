@@ -8,7 +8,7 @@
             <a class="nav-link" href="${request.contextPath}/web/kskm">在线考试</a>
             <a class="nav-link" href="${request.contextPath}/web/grade">成绩查询</a>
 
-            <a class="nav-link" href="${request.contextPath}/web/logout" onclick="logout()">登出</a>
+            <a class="nav-link" href="${request.contextPath}/web/loginout">登出</a>
         </nav>
     </div>
 </div>

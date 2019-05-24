@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.model.Score">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="stuid" jdbcType="VARCHAR" property="stuid" />
-    <result column="subject" jdbcType="INTEGER" property="subject" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
     <result column="testscore" jdbcType="INTEGER" property="testscore" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -129,7 +129,7 @@
         #{stuid,jdbcType=VARCHAR},
       </if>
       <if test="subject != null">
-        #{subject,jdbcType=INTEGER},
+        #{subject,jdbcType=VARCHAR},
       </if>
       <if test="testscore != null">
         #{testscore,jdbcType=INTEGER},
@@ -152,7 +152,7 @@
         stuid = #{record.stuid,jdbcType=VARCHAR},
       </if>
       <if test="record.subject != null">
-        subject = #{record.subject,jdbcType=INTEGER},
+        subject = #{record.subject,jdbcType=VARCHAR},
       </if>
       <if test="record.testscore != null">
         testscore = #{record.testscore,jdbcType=INTEGER},
@@ -166,7 +166,7 @@
     update score
     set id = #{record.id,jdbcType=VARCHAR},
       stuid = #{record.stuid,jdbcType=VARCHAR},
-      subject = #{record.subject,jdbcType=INTEGER},
+      subject = #{record.subject,jdbcType=VARCHAR},
       testscore = #{record.testscore,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -179,7 +179,7 @@
         stuid = #{stuid,jdbcType=VARCHAR},
       </if>
       <if test="subject != null">
-        subject = #{subject,jdbcType=INTEGER},
+        subject = #{subject,jdbcType=VARCHAR},
       </if>
       <if test="testscore != null">
         testscore = #{testscore,jdbcType=INTEGER},
@@ -190,7 +190,7 @@
   <update id="updateByPrimaryKey" parameterType="com.model.Score">
     update score
     set stuid = #{stuid,jdbcType=VARCHAR},
-      subject = #{subject,jdbcType=INTEGER},
+      subject = #{subject,jdbcType=VARCHAR},
       testscore = #{testscore,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>

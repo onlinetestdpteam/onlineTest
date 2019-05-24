@@ -22,7 +22,7 @@
                 <table id="table">
                     <thead>
                     <tr>
-
+                        <th>试题ID</th>
                         <th>试题标题</th>
                         <th>试题类型</th>
                         <th>试题科目</th>
@@ -33,6 +33,11 @@
                     <tbody>
                     <#list topicList as topicItem>
                         <tr>
+                            <#if topicItem.id??>
+                                <td>${topicItem.id}</td>
+                            <#else>
+                                <td>没有信息</td>
+                            </#if>
                             <#if topicItem.title??>
                                 <td>${topicItem.title}</td>
                             <#else>
@@ -286,16 +291,26 @@
         var title=$('#addtopicTitleinput').val();
         var type=$('#addtopicTypeinput').val();
         var subject=$('#addtopicSubjectinput').val();
-        var answers="";
+        var ansItemsA="";
+        var ansItemsB="";
+        var ansItemsC="";
+        var ansItemsD="";
         if(type == 0){
-            answers=$('#addAtopicAnswerinput').val()+"#"+$('#addBtopicAnswer').val()+"#"+$('#addCtopicAnswer').val()+"#"+$('#addDtopicAnswer').val();
+
+            ansItemsA=$('#addAtopicAnswerinput').val();
+           ansItemsB=$('#addBtopicAnswer').val();
+             ansItemsC=$('#addCtopicAnswer').val();
+             ansItemsD=$('#addDtopicAnswer').val();
         }else {
-            answers=null;
+            ansItemsA=null;
+            ansItemsB=null;
+            ansItemsC=null;
+            ansItemsD=null;
         }
         var answer=$('#addtopicAnwserinput').val();
         var description=$('#addtopicDescriptionInput').val();
 
-        var userData ={'title':title,'answer':answer,'ansItems':answers,'type':type,'description':description,'subject':subject};
+        var userData ={'title':title,'answer':answer,'ansItemsA':ansItemsA,'ansItemsB':ansItemsB,'ansItemsC':ansItemsC,'ansItemsD':ansItemsD,'type':type,'description':description,'subject':subject};
         // alert(username+" "+pwd+" "+phone+" "+type);
         axios.post('${request.contextPath}/Admin/TopicItem/',userData).then(function (response) {
 
@@ -335,12 +350,10 @@
                 $('#edittopicSubjectinput').val(respondata.subject);
                 $('#edittopicAnwserinput').val(respondata.answer);
 
-                if(respondata.ansItems.length>0){
-                    $('#editAtopicAnswerinput').val(respondata.ansItems[0]);
-                    $('#editBtopicAnswer').val(respondata.ansItems[2]);
-                    $('#editCtopicAnswer').val(respondata.ansItems[4]);
-                    $('#editDtopicAnswer').val(respondata.ansItems[6]);
-                }
+                $('#editAtopicAnswerinput').val(respondata.ansItemsA);
+                $('#editBtopicAnswer').val(respondata.ansItemsB);
+                $('#editCtopicAnswer').val(respondata.ansItemsC);
+                $('#editDtopicAnswer').val(respondata.ansItemsD);
 
 
                 $('#edittopicDescriptionInput').val(respondata.description);
@@ -368,15 +381,29 @@
         var title=$('#edittopicTitleinput').val();
         var type=$('#edittopicTypeinput').val();
         var subject=$('#edittopicSubjectinput').val();
-        var answers="";
-        if(type == 0){
-            answers=$('#editAtopicAnswerinput').val()+"#"+$('#editBtopicAnswer').val()+"#"+$('#editCtopicAnswer').val()+"#"+$('#editDtopicAnswer').val();
+
+
+        var ansItemsA="";
+        var ansItemsB="";
+        var ansItemsC="";
+        var ansItemsD="";
+
+        if(type == '0'){
+
+            ansItemsA=$('#editAtopicAnswerinput').val();
+            ansItemsB=$('#editBtopicAnswer').val();
+            ansItemsC=$('#editCtopicAnswer').val();
+            ansItemsD=$('#editDtopicAnswer').val();
         }else {
-            answers=null;
+            ansItemsA=null;
+            ansItemsB=null;
+            ansItemsC=null;
+            ansItemsD=null;
         }
         var answer=$('#edittopicAnwserinput').val();
         var description=$('#edittopicDescriptionInput').val();
-        var topicData ={'id':temptopicid,'title':title,'type':type,'ansItems':answers,'answer':answer,'description':description,'subject':subject};
+
+        var topicData ={'id':temptopicid,'title':title,'answer':answer,'ansItemsA':ansItemsA,'ansItemsB':ansItemsB,'ansItemsC':ansItemsC,'ansItemsD':ansItemsD,'type':type,'description':description,'subject':subject};
 
         axios.put('${request.contextPath}/Admin/TopicItem/',topicData).then(function (response) {
 

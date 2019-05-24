@@ -5,7 +5,7 @@ public class Score {
 
     private String stuid;
 
-    private Integer subject;
+    private String subject;
 
     private Integer testscore;
 
@@ -25,11 +25,11 @@ public class Score {
         this.stuid = stuid == null ? null : stuid.trim();
     }
 
-    public Integer getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(Integer subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 

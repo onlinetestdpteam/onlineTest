@@ -56,7 +56,7 @@
         function onTest() {
             var paperid=document.getElementById("paperTitle").value;
             // confirm(paperid);
-            location.href=""+paperid;
+            location.href="${request.contextPath}/web/exam/"+paperid;
         }
     </script>
 

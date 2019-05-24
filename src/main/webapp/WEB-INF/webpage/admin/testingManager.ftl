@@ -23,6 +23,7 @@
                 <table id="table">
                     <thead>
                     <tr>
+                        <th>考试id</th>
                         <th>考试名称</th>
                         <th>考试试卷</th>
                         <th>开始时间</th>
@@ -34,6 +35,11 @@
                     <tbody>
                     <#list testlist as item>
                         <tr>
+                            <#if (item.id)??>
+                                <td>${item.id}</td>
+                            <#else>
+                                <td>没有信息</td>
+                            </#if>
                             <#if (item.testname)??>
                                 <td>${item.testname}</td>
                             <#else>

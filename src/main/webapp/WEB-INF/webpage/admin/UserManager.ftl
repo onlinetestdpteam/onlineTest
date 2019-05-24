@@ -24,6 +24,7 @@
                 <table id="table">
                     <thead>
                     <tr>
+                        <th>用户ID</th>
                         <th>用户名</th>
                         <th>用户密码</th>
                         <th>电话号码</th>
@@ -35,6 +36,11 @@
                     <tbody>
                     <#list userlist as item>
                     <tr>
+                        <#if item.id??>
+                            <td>${item.id}</td>
+                        <#else>
+                            <td>没有信息</td>
+                        </#if>
                         <#if item.uname??>
                         <td>${item.uname}</td>
                             <#else>

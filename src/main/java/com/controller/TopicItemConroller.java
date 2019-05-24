@@ -87,7 +87,7 @@ public class TopicItemConroller {
 
 
         try {
-            topicItemService.delete(new TopicItem(id,"","","","","",""));
+            topicItemService.delete(new TopicItem(id,"","","","","","","","",""));
         }catch (Exception e){
             return new MsgBean(true,"删除失败",e.getMessage());
         }

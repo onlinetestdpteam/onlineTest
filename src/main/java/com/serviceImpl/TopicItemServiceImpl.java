@@ -59,7 +59,10 @@ public class TopicItemServiceImpl implements TopicItemService {
         update.set("title", entity.getTitle());
         update.set("type", entity.getType());
         update.set("subject", entity.getSubject());
-        update.set("ansItems", entity.getAnsItems());
+        update.set("ansItemsA", entity.getAnsItemsA());
+        update.set("ansItemsB", entity.getAnsItemsB());
+        update.set("ansItemsC", entity.getAnsItemsC());
+        update.set("ansItemsD", entity.getAnsItemsD());
         update.set("answer", entity.getAnswer());
 
         this.mongoTemplate.updateFirst(query, update, TopicItem.class);

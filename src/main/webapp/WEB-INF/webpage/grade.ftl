@@ -19,9 +19,35 @@
             <tr style="font-weight: bold">
                 <td>序列</td>
                 <td>所属课程</td>
-                <td>考卷发布日期</td>
                 <td>考试分数</td>
             </tr>
+            <#--scoreList-->
+            <#if scoreList??>
+            <#list scoreList as scoreItem>
+
+            <tr>
+                <#if scoreItem.id??>
+            <td>${scoreItem.id}</td>
+                <#else>
+                    <td>没有主键信息</td>
+                </#if>
+                <#if scoreItem.subject??>
+            <td>${scoreItem.subject}</td>
+                <#else>
+                    <td>没有课程信息</td>
+                </#if>
+                    <#if scoreItem.testscore??>
+            <td>${scoreItem.testscore}</td>
+                    <#else>
+                        <td>没有分数信息</td>
+                        </#if>
+            </tr>
+            <#else>
+                <td>没有分数信息</td>
+            </#list>
+            <#else>
+                <td>没有分数信息</td>
+            </#if>
             <#--<c:forEach items="${grades}" var="item">-->
                 <#--<tr>-->
                     <#--<td>${item.id}</td>-->

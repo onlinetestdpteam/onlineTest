@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,11 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
 
         testpaperService.setBaseDao(testpaperMapper);
         MsgBean paperList=testpaperService.selectAllByPage(1,5);
-        List<Map> tempList=(List<Map>) paperList.getData();
+        List<Map> tempList=new ArrayList<>();
+
+        tempList=(List<Map>) paperList.getData();
+
+
         Map tempManp=tempList.get(0);
 
         map.put("paperlist",tempManp.get("data"));

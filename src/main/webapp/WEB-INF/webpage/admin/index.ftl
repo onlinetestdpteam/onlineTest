@@ -14,7 +14,7 @@
 
 
             <div class="w3ls_agile_cylinder chart agile_info_shadow">
-                <h3 class="w3_inner_tittle two"> Cylinder chart</h3>
+                <h3 class="w3_inner_tittle two">题库图表</h3>
 
                 <div id="chartdiv"></div>
 
@@ -31,7 +31,7 @@
                             <i class="fa fa-building-o" aria-hidden="true"></i>
                             <div class="ca-content">
                                 <h4 class="ca-main">16,808</h4>
-                                <h3 class="ca-sub">New Companies</h3>
+                                <h3 class="ca-sub">用户数</h3>
                             </div>
                         </a>
                     </li>
@@ -40,7 +40,7 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div class="ca-content">
                                 <h4 class="ca-main one">26,808</h4>
-                                <h3 class="ca-sub one">New Clients</h3>
+                                <h3 class="ca-sub one">题目数</h3>
                             </div>
                         </a>
                     </li>
@@ -49,7 +49,7 @@
                             <i class="fa fa-database" aria-hidden="true"></i>
                             <div class="ca-content">
                                 <h4 class="ca-main two">29,008</h4>
-                                <h3 class="ca-sub two">New Projects</h3>
+                                <h3 class="ca-sub two">访问量</h3>
                             </div>
                         </a>
                     </li>
@@ -58,7 +58,7 @@
                             <i class="fa fa-tasks" aria-hidden="true"></i>
                             <div class="ca-content">
                                 <h4 class="ca-main three">49,436</h4>
-                                <h3 class="ca-sub three">Old Projects</h3>
+                                <h3 class="ca-sub three">java题库</h3>
                             </div>
                         </a>
                     </li>
@@ -67,7 +67,7 @@
                             <i class="fa fa-clone" aria-hidden="true"></i>
                             <div class="ca-content">
                                 <h4 class="ca-main four">30,808</h4>
-                                <h3 class="ca-sub four">New Orders</h3>
+                                <h3 class="ca-sub four">java题库</h3>
                             </div>
                         </a>
                     </li>

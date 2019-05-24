@@ -121,7 +121,7 @@ public class AdminTopicItemConroller {
 
 
         try {
-            topicItemService.delete(new TopicItem(id,"","","","","",""));
+            topicItemService.delete(new TopicItem(id,"","","","","","","","",""));
         }catch (Exception e){
             return new MsgBean(false,"删除失败",e.getMessage());
         }
