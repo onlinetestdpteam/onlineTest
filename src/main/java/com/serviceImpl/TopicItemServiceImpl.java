@@ -1,11 +1,13 @@
 package com.serviceImpl;
 
-import com.service.TopicItemService;
 import com.model.TopicItem;
-
+import com.service.TopicItemService;
+import com.util.FileUtils;
+import org.apache.poi.POIXMLDocument;
+import org.apache.poi.POIXMLTextExtractor;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -13,11 +15,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 @Service
 @Transactional
 public class TopicItemServiceImpl implements TopicItemService {
@@ -26,10 +25,10 @@ public class TopicItemServiceImpl implements TopicItemService {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<TopicItem> quryBySubject(String subject, String type,int start,int size) throws Exception {
+    public List<TopicItem> quryBySubject(String subject, String type, int start, int size) throws Exception {
 
         Query query = new Query();
-        TopicItem topicItem=new TopicItem();
+        TopicItem topicItem = new TopicItem();
         topicItem.setId("1");
         query.skip(start);
         query.limit(size);
@@ -49,7 +48,6 @@ public class TopicItemServiceImpl implements TopicItemService {
 
     @Override
     public void update(TopicItem entity) throws Exception {
-
 
 
         Query query = new Query();
@@ -92,5 +90,22 @@ public class TopicItemServiceImpl implements TopicItemService {
         query.addCriteria(new Criteria("id").is(id));
 
         return this.mongoTemplate.findOne(query, TopicItem.class);
+    }
+
+    @Override
+    public int insertAllFromFile(String path) throws Exception {
+        if (!(path.endsWith(".doc") || path.endsWith(".docx")))
+            return 0;
+        String buff = "";
+        try {
+            OPCPackage opcPackage = POIXMLDocument.openPackage(path);
+            POIXMLTextExtractor extractor = new XWPFWordExtractor(opcPackage);
+            buff = extractor.getText();
+        } catch (Exception e) {
+            return 0;
+        }
+        List<TopicItem> itemList = new FileUtils().getTopicList(java.util.Arrays.asList(buff.split("\n")));
+        this.mongoTemplate.insertAll(itemList);
+        return itemList.size();
     }
 }

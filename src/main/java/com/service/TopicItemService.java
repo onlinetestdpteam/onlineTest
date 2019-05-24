@@ -18,4 +18,5 @@ public interface TopicItemService {
 
     TopicItem quryById(String id) throws Exception;
 
+    public int insertAllFromFile(String path) throws Exception;
 }
