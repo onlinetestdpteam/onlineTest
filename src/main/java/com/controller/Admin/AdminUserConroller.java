@@ -39,27 +39,41 @@ public class AdminUserConroller extends BaseController<User> {
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    @ResponseBody
-    public MsgBean index(HttpServletRequest request) {
+
+    public MsgBean page(HttpServletRequest request,int page,int count) {
+
         String reslut="";
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
 
         userService.setBaseDao(userMapper);
-        MsgBean userList=userService.selectAllByPage(1,5);
+        MsgBean userList=userService.selectAllByPage(page,count);
+
         List<Map> tempList=(List<Map>) userList.getData();
         Map tempManp=tempList.get(0);
 
-        map.put("userlist",tempManp.get("data"));
+        List list=(List)tempManp.get("data");
+        map.put("userlist",list);
+        map.put("pagesize",list.size());
         try {
             reslut=FreemarkerUtils.getTemplate("admin/UserManager.ftl",map);
         }catch (Exception e){
             logger.error(e.toString());
         }
+        Map mappage=new HashMap();
+        mappage.put("page",reslut);
+        mappage.put("pageindex",page);
+        mappage.put("pagesize",tempManp.get("totalPage"));
+        return new MsgBean(true,"返回页面成功！",mappage);
+    }
 
-        return new MsgBean(true,"返回页面成功！",reslut);
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+
+
+        return page(request,1, 5);
 
     }
 
@@ -73,8 +87,8 @@ public class AdminUserConroller extends BaseController<User> {
 
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
-        return super.queryAllByPage(page, count, userService,userMapper);
+    public MsgBean queryAllByPage(HttpServletRequest request,@PathVariable("page") int page, @PathVariable("count") int count) {
+        return page(request,page, count);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)

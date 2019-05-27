@@ -175,8 +175,6 @@
                                     <th>用户名</th>
                                     <th>总分</th>
 
-
-                                    <th>Progress</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -186,7 +184,7 @@
                                     <td>Malorum</td>
 
                                     <td><span class="label label-danger">98</span></td>
-                                    <td><span class="badge badge-info">98%</span></td>
+
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -194,7 +192,7 @@
                                     <td>Evan</td>
 
                                     <td><span class="label label-success">90</span></td>
-                                    <td><span class="badge badge-success">90%</span></td>
+
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -202,7 +200,7 @@
                                     <td>John</td>
 
                                     <td><span class="label label-warning">80</span></td>
-                                    <td><span class="badge badge-warning">80%</span></td>
+
                                 </tr>
                                 <tr>
                                     <td>4</td>
@@ -210,7 +208,7 @@
                                     <td>Danial</td>
 
                                     <td><span class="label label-info">65</span></td>
-                                    <td><span class="badge badge-info">65%</span></td>
+
                                 </tr>
                                 <tr>
                                     <td>5</td>
@@ -218,7 +216,7 @@
                                     <td>David</td>
 
                                     <td><span class="label label-warning">55</span></td>
-                                    <td><span class="badge badge-danger">55%</span></td>
+
                                 </tr>
 
                                 </tbody>

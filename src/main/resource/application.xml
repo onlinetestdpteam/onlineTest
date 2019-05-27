@@ -13,7 +13,7 @@
 
     <context:component-scan base-package="com.service"/>
     <context:component-scan base-package="com.serviceImpl"/>
-
+    <context:component-scan base-package="com.dao"/>
     <import resource="classpath:shiro-context.xml"/>
     <!-- 引入mongodb的相关配置 -->
     <import resource="classpath:spring-mongodb.xml"/>

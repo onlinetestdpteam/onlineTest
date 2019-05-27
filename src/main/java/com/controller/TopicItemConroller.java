@@ -3,6 +3,7 @@ package com.controller;
 import com.UUID.UUIDgenarater;
 import com.dao.ScoreMapper;
 import com.model.MsgBean;
+import com.model.Page;
 import com.model.Score;
 import com.model.TopicItem;
 import com.service.ScoreService;
@@ -42,10 +43,10 @@ public class TopicItemConroller {
     @ResponseBody
     public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
 
-        List<TopicItem> topicItemList=new ArrayList<TopicItem>();
+        Page<TopicItem> topicItemList=new Page<TopicItem>();
 
         try {
-           topicItemList =topicItemService.quryAll(page,count);
+           topicItemList =topicItemService.quryAllByPage(page,count);
         }catch (Exception e){
             return new MsgBean(true,"查询成功",e.getMessage());
         }

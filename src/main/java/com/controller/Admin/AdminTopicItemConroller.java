@@ -2,6 +2,7 @@ package com.controller.Admin;
 
 import com.UUID.UUIDgenarater;
 import com.model.MsgBean;
+import com.model.Page;
 import com.model.TopicItem;
 import com.service.TopicItemService;
 import com.util.FreemarkerUtils;
@@ -26,29 +27,46 @@ public class AdminTopicItemConroller {
 
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    @ResponseBody
-    public MsgBean index(HttpServletRequest request) {
 
+
+    public MsgBean page(HttpServletRequest request,int page,int count) {
         String reslut="";
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
         List<TopicItem> topicItemList=new ArrayList<TopicItem>();
-
+        Page<TopicItem> page1=new Page<TopicItem>();
+        int total=0;
         try {
-        topicItemList=topicItemService.quryAll(0,5);
+            page1=topicItemService.quryAllByPage(page,count);
+            topicItemList=(List<TopicItem>)page1.getRecords();
+
+            total=page1.getSize();
         }catch (Exception e){
             logger.error(e.toString());
         }
+
+
         map.put("topicList",topicItemList);
+        map.put("pagesize",total);
         try {
             reslut= FreemarkerUtils.getTemplate("admin/topicManager.ftl",map);
         }catch (Exception e){
             logger.error(e.toString());
         }
+        Map mappage=new HashMap();
+        mappage.put("page",reslut);
+        mappage.put("pageindex",page);
+        mappage.put("totaldata",total);
+        return new MsgBean(true,"返回页面成功！",mappage);
+    }
 
-        return new MsgBean(true,"返回页面成功！",reslut);
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+
+
+        return page(request,1,5);
 
     }
 
@@ -72,17 +90,9 @@ public class AdminTopicItemConroller {
 
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
+    public MsgBean queryAllByPage(HttpServletRequest request,@PathVariable("page") int page, @PathVariable("count") int count) {
 
-        List<TopicItem> topicItemList=new ArrayList<TopicItem>();
-
-        try {
-           topicItemList =topicItemService.quryAll(page,count);
-        }catch (Exception e){
-            return new MsgBean(true,"查询成功",e.getMessage());
-        }
-
-        return new MsgBean(true,"查询成功",topicItemList);
+        return page(request,page,count);
 
     }
 

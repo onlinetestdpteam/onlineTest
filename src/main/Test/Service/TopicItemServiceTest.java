@@ -19,7 +19,6 @@ public class TopicItemServiceTest extends BaseJunit4Test{
 
         try {
 //            List<TopicItem> topicItemList =topicItemService.quryBySubject("","20");
-            List<TopicItem> topicItemList =topicItemService.quryAll(0,20);
 //            topicItem.setType("20");
 //            TopicItem topicItem=topicItemService.quryById("5cd53d561207e91e54e88e6d");
 //            topicItemService.update(topicItem);

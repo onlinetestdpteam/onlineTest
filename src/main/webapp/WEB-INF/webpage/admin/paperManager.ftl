@@ -77,7 +77,7 @@
 
 
             </div>
-
+            <div id="page" class="m-pagination"></div>
 
         </div>
 
@@ -156,13 +156,41 @@
 
     var temppaperid="";
     var paperadddilog;
-    function reload() {
-        axios.get('${request.contextPath}/Admin/Testpaper/').then(function (response) {
-            console.log(response);
+
+
+
+    $("#page").on("pageClicked", function (event, data) {
+       // console.log(data);
+
+        axios.get('${request.contextPath}/Admin/Testpaper/'+(data.pageIndex+1)+'/'+data.pageSize).then(function (response) {
+            // console.log(response);
             if(response.data.status){
 
-                console.log(response.data.data);
-                $("#inner_content").html(response.data.data);
+                // console.log(response.data.data);
+                index = response.data.data.pageindex - 1;
+                temptotal=response.data.data.pagesize;
+                console.log(temptotal);
+                console.log(index);
+                console.log(data.pageIndex);
+                $("#inner_content").html(response.data.data.page);
+            }else {
+                confirm("失败!");
+
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+
+
+
+    function reload() {
+        axios.get('${request.contextPath}/Admin/Testpaper/').then(function (response) {
+            // console.log(response);
+            if(response.data.status){
+
+                // console.log(response.data.data);
+                $("#inner_content").html(response.data.data.page);
             }else {
                 confirm("失败!");
 
@@ -180,10 +208,13 @@
             <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
             console.log(response.data.status);
             if(response.data.status){
+                temptotal=temptotal-1;
+
                 layer.alert('删除成功！', {icon: 6});
                 reload();
             }else {
                 // confirm("失败!");
+
                 layer.alert('删除失败', {icon: 6});
                 reload();
             }
@@ -220,6 +251,8 @@
             <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
             console.log(response.data.status);
             if(response.data.status){
+                temptotal=temptotal+1;
+
                 layer.close(paperadddilog);
                 layer.alert('添加成功！', {icon: 6});
 
@@ -298,9 +331,12 @@
     }
 
 
+
     $(document).ready(function() {
 
 
+        console.log("-----试卷管理-------");
+        initpage(5,temptotal*5);
         $("#addSubmitBtn").click(function(){
                 addSubmit();
             }

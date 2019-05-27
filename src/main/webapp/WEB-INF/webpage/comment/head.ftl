@@ -11,6 +11,7 @@
 
     <!-- //custom-theme -->
     <link href="${request.contextPath}/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="${request.contextPath}/static/css/mricode.pagination.css" rel="stylesheet" />
     <link href="${request.contextPath}/static/css/component.css" rel="stylesheet" type="text/css" media="all" />
     <link href="${request.contextPath}/static/css/style_grid.css" rel="stylesheet" type="text/css" media="all" />
     <link href="${request.contextPath}/static/css/style.css" rel="stylesheet" type="text/css" media="all" />

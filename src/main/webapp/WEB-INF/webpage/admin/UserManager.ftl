@@ -87,7 +87,7 @@
 
 
             </div>
-
+            <div id="page" class="m-pagination"></div>
 
         </div>
 
@@ -178,14 +178,38 @@
 
     var tempuserid="";
     var useradddilog;
+
+    $("#page").on("pageClicked", function (event, data) {
+        // console.log(data);
+
+        axios.get('${request.contextPath}/Admin/User/'+(data.pageIndex+1)+'/'+data.pageSize).then(function (response) {
+            // console.log(response);
+            if(response.data.status){
+
+                // console.log(response.data.data);
+                index = response.data.data.pageindex - 1;
+                temptotal=response.data.data.pagesize;
+                console.log(temptotal);
+                console.log(index);
+                console.log(data.pagesize);
+                $("#inner_content").html(response.data.data.page);
+            }else {
+                confirm("失败!");
+
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+
     function reload() {
         axios.get('${request.contextPath}/Admin/User/').then(function (response) {
-            console.log(response);
+            // console.log(response);
             if(response.data.status){
 
 
-                console.log(response.data.data);
-                $("#inner_content").html(response.data.data);
+                // console.log(response.data.data);
+                $("#inner_content").html(response.data.data.page);
             }else {
                 confirm("失败!");
 
@@ -203,6 +227,7 @@
         <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
         console.log(response.data.status);
         if(response.data.status){
+            temptotal=temptotal-1;
             layer.alert('删除成功！', {icon: 6});
             reload();
         }else {
@@ -236,12 +261,13 @@
         var type=$('#usertypeinput').val();
 
         var userData ={'uname':username,'pwd':pwd,'status':1,'phone':phone,'type':type};
-        alert(username+" "+pwd+" "+phone+" "+type);
+        // alert(username+" "+pwd+" "+phone+" "+type);
         axios.post('${request.contextPath}/Admin/User/',userData).then(function (response) {
 
         <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
         console.log(response.data.status);
         if(response.data.status){
+            temptotal=temptotal+1;
             layer.close(useradddilog);
         layer.alert('添加成功！', {icon: 6});
 
@@ -322,7 +348,7 @@
 
     $(document).ready(function() {
 
-
+        initpage(5,temptotal*5);
         $("#addSubmitBtn").click(function(){
                 addSubmit();
         }

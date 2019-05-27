@@ -1,5 +1,7 @@
 package com.serviceImpl;
 
+import com.dao.TopicItemDao;
+import com.model.Page;
 import com.service.TopicItemService;
 import com.model.TopicItem;
 
@@ -24,7 +26,8 @@ public class TopicItemServiceImpl implements TopicItemService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
-
+    @Autowired
+    private TopicItemDao topicItemDao;
     @Override
     public List<TopicItem> quryBySubject(String subject, String type,int start,int size) throws Exception {
 
@@ -40,11 +43,9 @@ public class TopicItemServiceImpl implements TopicItemService {
     }
 
     @Override
-    public List<TopicItem> quryAll(int start, int size) throws Exception {
-        Query query = new Query();
-        query.skip(start);
-        query.limit(size);
-        return this.mongoTemplate.find(query, TopicItem.class);
+    public Page<TopicItem> quryAllByPage(int page, int size) throws Exception {
+        Page<TopicItem> page1=topicItemDao.selectApplyLogPage(page,size);
+        return page1;
     }
 
     @Override

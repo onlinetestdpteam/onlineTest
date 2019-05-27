@@ -69,7 +69,21 @@
 </div>
 
 <script>
+
+    var temptotal=0;
+    var index=0;
+
+    function initpage(pageszie,total) {
+        $("#page").pagination({
+            pageSize: pageszie,
+            total:total,
+            pageIndex:index
+        });
+    }
+    console.log("-----主页-------");
     $(document).ready(function(){
+
+
 
         $("#userManager").click(function(){
 
@@ -79,8 +93,12 @@
                 if(response.data.status){
 
                    <#--location.href="${request.contextPath}/Admin/";-->
-                    console.log(response.data.data);
-                    $("#inner_content").html(response.data.data);
+                    temptotal=response.data.data.pagesize;
+                    index=response.data.data.pageindex - 1;
+                    console.log(temptotal);
+                    console.log(index);
+
+                    $("#inner_content").html(response.data.data.page);
                 }else {
                     confirm("失败!");
 
@@ -100,8 +118,13 @@
                 if(response.data.status){
 
                     <#--location.href="${request.contextPath}/Admin/";-->
-                    console.log(response.data.data);
-                    $("#inner_content").html(response.data.data);
+                    temptotal=response.data.data.totaldata;
+                    index=response.data.data.pageindex - 1;
+                    console.log(temptotal);
+                    console.log(index);
+
+                    $("#inner_content").html(response.data.data.page);
+
                 }else {
 
                     confirm("失败!");
@@ -113,16 +136,24 @@
 
         });
 
+
+
         $("#paperManager").click(function(){
 
 
             axios.get('${request.contextPath}/Admin/Testpaper/').then(function (response) {
-                console.log(response.data.status);
+                // console.log(response.data.status);
                 if(response.data.status){
 
                     <#--location.href="${request.contextPath}/Admin/";-->
-                    console.log(response.data.data);
-                    $("#inner_content").html(response.data.data);
+                    // console.log(response.data.data);
+                    temptotal=response.data.data.pagesize;
+                    index=response.data.data.pageindex - 1;
+                    console.log(temptotal);
+                    console.log(index);
+
+                    $("#inner_content").html(response.data.data.page);
+
                 }else {
                     confirm("失败!");
 
@@ -141,8 +172,12 @@
                 if(response.data.status){
 
                     <#--location.href="${request.contextPath}/Admin/";-->
-                    console.log(response.data.data);
-                    $("#inner_content").html(response.data.data);
+                    temptotal=response.data.data.pagesize;
+                    index=response.data.data.pageindex - 1;
+                    console.log(temptotal);
+                    console.log(index);
+
+                    $("#inner_content").html(response.data.data.page);
                 }else {
                     confirm("失败!");
 

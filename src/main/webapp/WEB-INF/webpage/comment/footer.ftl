@@ -1,41 +1,4 @@
-<#--<div class="pjax_loading">-->
-    <#--<div class="loader">-->
-        <#--<div class="text">Loading...</div>-->
-        <#--<div class="horizontal">-->
-            <#--<div class="circlesup">-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-            <#--</div>-->
-            <#--<div class="circlesdwn">-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-            <#--</div>-->
-        <#--</div>-->
-        <#--<div class="vertical">-->
-            <#--<div class="circlesup">-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-            <#--</div>-->
-            <#--<div class="circlesdwn">-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-                <#--<div class="circle"></div>-->
-            <#--</div>-->
-        <#--</div>-->
-    <#--</div>-->
-<#--</div>-->
-<#--<div class="pjax_loading1"></div>-->
+
 <div class="copyrights">
     <p>Copyright © 2019.在线考试系统 <a href="http://onlineTest.zhiyigo.cn/" target="_blank" title="在线考试系统">在线考试系统</a> - Collect from <a href="http://onlineTest.zhiyigo.cn/" title="在线考试系统" target="_blank">在线考试系统</a></p>
 </div>
@@ -49,7 +12,7 @@
 <script>
     new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
-<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--->
+
 <script type="text/javascript">
     google.maps.event.addDomListener(window, 'load', init);
     function init() {
@@ -62,7 +25,7 @@
         var map = new google.maps.Map(mapElement, mapOptions);
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(40.6700, -73.9400),
-            map: map,
+            map: map
         });
     }
 </script>
@@ -152,6 +115,8 @@
 <script src="${request.contextPath}/static/js/amcharts.js"></script>
 <script src="${request.contextPath}/static/js/serial.js"></script>
 <script src="${request.contextPath}/static/js/export.js"></script>
+<script src="${request.contextPath}/static/js/mricode.pagination.js"></script>
+
 <script src="${request.contextPath}/static/js/light.js"></script>
 <script type="text/javascript" src="${request.contextPath}/static/js/jquery.basictable.min.js"></script>
 <!-- Chart code -->
@@ -232,115 +197,115 @@
     }, 0);
 </script>
 <!-- Chart code -->
-<script>
-    var chart = AmCharts.makeChart("chartdiv1", {
-        "type": "serial",
-        "theme": "light",
-        "legend": {
-            "horizontalGap": 10,
-            "maxColumns": 1,
-            "position": "right",
-            "useGraphSettings": true,
-            "markerSize": 10
-        },
-        "dataProvider": [{
-            "year": 2017,
-            "europe": 2.5,
-            "namerica": 2.5,
-            "asia": 2.1,
-            "lamerica": 0.3,
-            "meast": 0.2,
-            "africa": 0.1
-        }, {
-            "year": 2016,
-            "europe": 2.6,
-            "namerica": 2.7,
-            "asia": 2.2,
-            "lamerica": 0.3,
-            "meast": 0.3,
-            "africa": 0.1
-        }, {
-            "year": 2015,
-            "europe": 2.8,
-            "namerica": 2.9,
-            "asia": 2.4,
-            "lamerica": 0.3,
-            "meast": 0.3,
-            "africa": 0.1
-        }],
-        "valueAxes": [{
-            "stackType": "regular",
-            "axisAlpha": 0.5,
-            "gridAlpha": 0
-        }],
-        "graphs": [{
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Europe",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "europe"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "North America",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "namerica"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Asia-Pacific",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "asia"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Latin America",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "lamerica"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Middle-East",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "meast"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Africa",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "africa"
-        }],
-        "rotate": true,
-        "categoryField": "year",
-        "categoryAxis": {
-            "gridPosition": "start",
-            "axisAlpha": 0,
-            "gridAlpha": 0,
-            "position": "left"
-        },
-        "export": {
-            "enabled": true
-        }
-    });
-</script>
+<#--<script>-->
+    <#--var chart = AmCharts.makeChart("chartdiv1", {-->
+        <#--"type": "serial",-->
+        <#--"theme": "light",-->
+        <#--"legend": {-->
+            <#--"horizontalGap": 10,-->
+            <#--"maxColumns": 1,-->
+            <#--"position": "right",-->
+            <#--"useGraphSettings": true,-->
+            <#--"markerSize": 10-->
+        <#--},-->
+        <#--"dataProvider": [{-->
+            <#--"year": 2017,-->
+            <#--"europe": 2.5,-->
+            <#--"namerica": 2.5,-->
+            <#--"asia": 2.1,-->
+            <#--"lamerica": 0.3,-->
+            <#--"meast": 0.2,-->
+            <#--"africa": 0.1-->
+        <#--}, {-->
+            <#--"year": 2016,-->
+            <#--"europe": 2.6,-->
+            <#--"namerica": 2.7,-->
+            <#--"asia": 2.2,-->
+            <#--"lamerica": 0.3,-->
+            <#--"meast": 0.3,-->
+            <#--"africa": 0.1-->
+        <#--}, {-->
+            <#--"year": 2015,-->
+            <#--"europe": 2.8,-->
+            <#--"namerica": 2.9,-->
+            <#--"asia": 2.4,-->
+            <#--"lamerica": 0.3,-->
+            <#--"meast": 0.3,-->
+            <#--"africa": 0.1-->
+        <#--}],-->
+        <#--"valueAxes": [{-->
+            <#--"stackType": "regular",-->
+            <#--"axisAlpha": 0.5,-->
+            <#--"gridAlpha": 0-->
+        <#--}],-->
+        <#--"graphs": [{-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "Europe",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "europe"-->
+        <#--}, {-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "North America",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "namerica"-->
+        <#--}, {-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "Asia-Pacific",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "asia"-->
+        <#--}, {-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "Latin America",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "lamerica"-->
+        <#--}, {-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "Middle-East",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "meast"-->
+        <#--}, {-->
+            <#--"balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",-->
+            <#--"fillAlphas": 0.8,-->
+            <#--"labelText": "[[value]]",-->
+            <#--"lineAlpha": 0.3,-->
+            <#--"title": "Africa",-->
+            <#--"type": "column",-->
+            <#--"color": "#000000",-->
+            <#--"valueField": "africa"-->
+        <#--}],-->
+        <#--"rotate": true,-->
+        <#--"categoryField": "year",-->
+        <#--"categoryAxis": {-->
+            <#--"gridPosition": "start",-->
+            <#--"axisAlpha": 0,-->
+            <#--"gridAlpha": 0,-->
+            <#--"position": "left"-->
+        <#--},-->
+        <#--"export": {-->
+            <#--"enabled": true-->
+        <#--}-->
+    <#--});-->
+<#--</script>-->
 
 <!-- //amcharts -->
 <script src="${request.contextPath}/static/js/chart1.js"></script>
@@ -437,37 +402,8 @@
 <script src="${request.contextPath}/static/js/jquery.nicescroll.js"></script>
 <script src="${request.contextPath}/static/js/scripts.js"></script>
 
-
-
-<#--<script src="https://raw.github.com/defunkt/jquery-pjax/master/jquery.pjax.js"></script>-->
 <script type="text/javascript" src="${request.contextPath}/static/js/bootstrap-3.1.1.min.js"></script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<#--<script type="text/javascript" language="javascript">-->
 
-    <#--$(function() {-->
-
-        <#--$(document).pjax('a[target!=_blank]', '#wthree_agile_admin_info', {fragment:'#wthree_agile_admin_info', timeout:6000}); //这是a标签的pjax。#content 表示执行pjax后会发生变化的id，改成你主题的内容主体id或class。timeout是pjax响应时间限制，如果在设定时间内未响应就执行页面转跳，可自由设置。-->
-
-        <#--$(document).on('submit', 'form', function (event) {$.pjax.submit(event, '#wthree_agile_admin_info', {fragment:'#wthree_agile_admin_info', timeout:6000});}); //这是提交表单的pjax。form表示所有的提交表单都会执行pjax，比如搜索和提交评论，可自行修改改成你想要执行pjax的form id或class。#content 同上改成你主题的内容主体id或class。-->
-
-        <#--$(document).on('pjax:send', function() {-->
-
-            <#--$(".pjax_loading,.pjax_loading1").css("display", "block");//参考的loading动画代码-->
-
-<#--//执行pjax开始，在这里添加要重载的代码，可自行添加loading动画代码。例如你已调用了NProgress，在这里添加 NProgress.start();-->
-
-        <#--});-->
-
-        <#--$(document).on('pjax:complete', function() {-->
-
-            <#--$(".pjax_loading,.pjax_loading1").css("display", "none");//参考的loading动画代码-->
-
-<#--//执行pjax结束，在这里添加要重载的代码，可自行添加loading动画结束或隐藏代码。例如NProgress的结束代码 NProgress.done();-->
-
-        <#--});-->
-
-    <#--});-->
-
-<#--</script>-->
 <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>

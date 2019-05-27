@@ -29,31 +29,41 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
     private TestpaperMapper testpaperMapper;
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    @ResponseBody
-    public MsgBean index(HttpServletRequest request) {
+
+    public MsgBean page(HttpServletRequest request,int page,int count) {
+
         String reslut="";
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
 
         testpaperService.setBaseDao(testpaperMapper);
-        MsgBean paperList=testpaperService.selectAllByPage(1,5);
-        List<Map> tempList=new ArrayList<>();
+        MsgBean paperList=testpaperService.selectAllByPage(page,count);
 
-        tempList=(List<Map>) paperList.getData();
-
+        List<Map> tempList=(List<Map>) paperList.getData();
         Map tempManp=tempList.get(0);
+        List list=(List)tempManp.get("data");
+        map.put("paperlist",list);
 
-        map.put("paperlist",tempManp.get("data"));
         try {
             reslut= FreemarkerUtils.getTemplate("admin/paperManager.ftl",map);
         }catch (Exception e){
             logger.error(e.toString());
         }
+        Map mappage=new HashMap();
+        mappage.put("page",reslut);
+        mappage.put("pageindex",page);
+        mappage.put("pagesize",tempManp.get("totalPage"));
+        return new MsgBean(true,"返回页面成功！",mappage);
+    }
 
-        return new MsgBean(true,"返回页面成功！",reslut);
 
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+
+
+        return page(request,1,5);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -64,8 +74,8 @@ public class AdminTestpaperConroller extends BaseController<Testpaper> {
 
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
-        return super.queryAllByPage(page, count, testpaperService,testpaperMapper);
+    public MsgBean queryAllByPage(HttpServletRequest request,@PathVariable("page") int page, @PathVariable("count") int count) {
+        return page(request,page,count);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)

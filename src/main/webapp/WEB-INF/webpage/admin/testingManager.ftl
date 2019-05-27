@@ -33,6 +33,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <#if testlist??>
                     <#list testlist as item>
                         <tr>
                             <#if (item.id)??>
@@ -84,13 +85,15 @@
                     <#else>
                         <td>没有试卷信息</td>
                     </#list>
-
+                    <#else>
+                    <td>没有试卷信息</td>
+                    </#if>
                     </tbody>
                 </table>
 
 
             </div>
-
+            <div id="page" class="m-pagination"></div>
 
         </div>
 
@@ -204,13 +207,37 @@
 
     var temptestid="";
     var testadddilog;
+
+    $("#page").on("pageClicked", function (event, data) {
+        // console.log(data);
+
+        axios.get('${request.contextPath}/Admin/Testing/'+(data.pageIndex+1)+'/'+data.pageSize).then(function (response) {
+            // console.log(response);
+            if(response.data.status){
+
+                // console.log(response.data.data);
+                index = response.data.data.pageindex - 1;
+                temptotal=response.data.data.pagesize;
+                console.log(temptotal);
+                console.log(index);
+                console.log(data.pageIndex);
+                $("#inner_content").html(response.data.data.page);
+            }else {
+                confirm("失败!");
+
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+
     function reload() {
         axios.get('${request.contextPath}/Admin/Testing/').then(function (response) {
             console.log(response);
             if(response.data.status){
 
                 console.log(response.data.data);
-                $("#inner_content").html(response.data.data);
+                $("#inner_content").html(response.data.data.page);
             }else {
                 confirm("失败!");
 
@@ -228,6 +255,7 @@
             <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
             console.log(response.data.status);
             if(response.data.status){
+                temptotal=temptotal-1;
                 layer.alert('删除成功！', {icon: 6});
                 reload();
             }else {
@@ -268,6 +296,7 @@
             <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
             console.log(response.data.status);
             if(response.data.status){
+                temptotal=temptotal+1;
                 layer.close(testadddilog);
                 layer.alert('添加成功！', {icon: 6});
 
@@ -351,7 +380,7 @@
 
     $(document).ready(function() {
 
-
+        initpage(5,temptotal*5);
         $("#addSubmitBtn").click(function(){
                 addSubmit();
             }

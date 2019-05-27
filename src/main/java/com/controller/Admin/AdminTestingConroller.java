@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,26 +45,44 @@ public class AdminTestingConroller extends BaseController<Testing> {
 
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    @ResponseBody
-    public MsgBean index(HttpServletRequest request) {
+
+
+    public MsgBean page(HttpServletRequest request,int page,int count) {
+
         String reslut="";
         Map<String,Object> map=new HashMap<>();
         request.getContextPath();
         map.put("request",request);
         testingService.setBaseDao(testingMapper);
-        MsgBean paperList=testingService.selectAllByPage(1,5);
-        List<Map> tempList=(List<Map>) paperList.getData();
-        Map tempManp=tempList.get(0);
+        MsgBean paperList=testingService.selectAllByPage(page,count);
 
-        map.put("testlist",tempManp.get("data"));
+        List<Map> tempList=(List<Map>) paperList.getData();
+
+
+        Map tempManp=tempList.get(0);
+        List list=(List)tempManp.get("data");
+        map.put("testlist",list);
+        map.put("pagesize",tempManp.get("totalPage"));
         try {
             reslut= FreemarkerUtils.getTemplate("admin/testingManager.ftl",map);
         }catch (Exception e){
             logger.error(e.toString());
         }
 
-        return new MsgBean(true,"返回页面成功！",reslut);
+        Map mappage=new HashMap();
+        mappage.put("page",reslut);
+        mappage.put("pageindex",page);
+        mappage.put("pagesize",tempManp.get("totalPage"));
+
+        return new MsgBean(true,"返回页面成功！",mappage);
+    }
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean index(HttpServletRequest request) {
+
+
+        return page(request,1,5);
 
     }
 
@@ -88,10 +107,13 @@ public class AdminTestingConroller extends BaseController<Testing> {
         return super.queryById(id, testingService,testingMapper);
     }
 
+
+
+
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {
-        return super.queryAllByPage(page, count, testingService,testingMapper);
+    public MsgBean queryAllByPage(HttpServletRequest request,@PathVariable("page") int page, @PathVariable("count") int count) {
+        return page(request,page,count);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
