@@ -1,6 +1,7 @@
 <html>
 <head>
     <#include "forecomment/head.ftl">
+    <link rel="stylesheet" href="${request.contextPath}/static/css/drawstyle.css">
 </head>
 <body>
 <div id="container">
@@ -41,7 +42,15 @@
 </div>
 <#--<div class="backgroup"></div>-->
 <#include "./forecomment/footer.ftl">
+<script type="text/javascript" src="${request.contextPath}/static/js/pixi.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/static/js/tinycolor.min.js"></script>
 
+<script  src="${request.contextPath}/static/js/drawindex.js"></script>
+
+<div style="text-align:center;clear:both">
+    <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+    <script src="/follow.js" type="text/javascript"></script>
+</div>
 <script>
 
     $(document).ready(function(){
