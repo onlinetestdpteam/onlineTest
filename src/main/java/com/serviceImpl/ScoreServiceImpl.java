@@ -5,10 +5,12 @@ import com.dao.ScoreMapper;
 import com.service.ScoreService;
 import com.model.Score;
 import com.model.User;
+import com.util.TimestampUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -27,6 +29,12 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score> implements ScoreSer
 
     @Override
     public List<Score> selectByAllByUserId(String stuid) {
+
+        List<Score> scoreList=scoreMapper.selectByAllByUserId(stuid);
+
+        for (Score score:scoreList) {
+            score.setTimestr(TimestampUtil.stampToDate(String.valueOf(score.getTime())));
+        }
 
         return scoreMapper.selectByAllByUserId(stuid);
     }

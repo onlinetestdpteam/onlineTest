@@ -8,6 +8,11 @@
     *
     from testpaper
 </select>
+  <select id="selectAllpaperId" resultMap="BaseResultMap">
+    select
+    id
+    from testpaper
+</select>
   <select id="selectByTestid" resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     *

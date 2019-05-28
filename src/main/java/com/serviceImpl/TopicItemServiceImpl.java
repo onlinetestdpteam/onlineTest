@@ -6,8 +6,13 @@ import com.service.TopicItemService;
 import com.model.TopicItem;
 import com.service.TopicItemService;
 import com.util.FileUtils;
-import org.apache.poi.POIXMLDocument;
-import org.apache.poi.POIXMLTextExtractor;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.model.PicturesTable;
+import org.apache.poi.hwpf.usermodel.Picture;
+import org.apache.poi.ooxml.extractor.POIXMLTextExtractor;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFPictureData;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,15 +111,16 @@ public class TopicItemServiceImpl implements TopicItemService {
     public int insertAllFromFile(String path) throws Exception {
         if (!(path.endsWith(".doc") || path.endsWith(".docx")))
             return 0;
+        InputStream is = new FileInputStream(path);
+        HWPFDocument doc = new HWPFDocument(is);
         String buff = "";
         try {
-            OPCPackage opcPackage = POIXMLDocument.openPackage(path);
-            POIXMLTextExtractor extractor = new XWPFWordExtractor(opcPackage);
-            buff = extractor.getText();
+
+            buff = doc.getDocumentText();
         } catch (Exception e) {
             return 0;
         }
-        List<TopicItem> itemList = new FileUtils().getTopicList(java.util.Arrays.asList(buff.split("\n")));
+        List<TopicItem> itemList = new FileUtils().getTopicList(java.util.Arrays.asList(buff.split("\r")));
         this.mongoTemplate.insertAll(itemList);
         return itemList.size();
     }

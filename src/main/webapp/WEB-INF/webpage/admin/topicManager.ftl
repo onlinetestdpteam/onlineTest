@@ -15,7 +15,9 @@
     <div class="inner_content_w3_agile_info two_in">
         <h2 class="w3_inner_tittle">试题管理</h2>
         <!-- tables -->
-        <button onclick="add()">增加试题</button>
+        <#---->
+        <button onclick="add()" class="btn btn-info">增加试题</button>
+        <button onclick="upload()" class="btn btn-info">批量导入试题</button>
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
                 <h3 class="w3_inner_tittle two">试题列表</h3>
@@ -69,8 +71,8 @@
                                 <td>没有信息</td>
                             </#if>
 
-                            <td><button id="delbtn" onclick='del("${topicItem.id}")'>删除</button>
-                                <button id="addbtn" onclick='edit("${topicItem.id}")'>修改</button>
+                            <td><button id="delbtn" onclick='del("${topicItem.id}")' class="btn btn-info">删除</button>
+                                <button id="addbtn" onclick='edit("${topicItem.id}")' class="btn btn-info">修改</button>
                             </td>
 
                         </tr>
@@ -92,13 +94,13 @@
 
 
 
-<div id="topicItemAddInfoForm" style="display:none;">
+<div id="topicItemAddInfoForm" style="display:none;"  class="form-control">
 
     <br/>
 
     <div class="row">
         <div class="col-xs-3" id="topicTitle">试题标题</div>
-        <div class="col-xs-3"><input id="addtopicTitleinput"/></div>
+        <div class="col-xs-3"><input id="addtopicTitleinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
@@ -116,11 +118,11 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="topicSubject">试题科目</div>
-        <div class="col-xs-3"><input id="addtopicSubjectinput"/></div>
+        <div class="col-xs-3"><input id="addtopicSubjectinput" class="input-lg"/></div>
     </div><br/>
     <div class="row">
         <div class="col-xs-3" id="topicDescription">试题描述</div>
-        <div class="col-xs-3" ><textarea id="addtopicDescriptionInput" rows="3" cols="10">这里输入题目描述.....</textarea></div>
+        <div class="col-xs-3" ><textarea id="addtopicDescriptionInput" rows="3" cols="10" >这里输入题目描述.....</textarea></div>
 
     </div>
     <br/>
@@ -131,13 +133,13 @@
         <div class="col-xs-3" >试题答案选项</div>
         <div class="col-xs-3" >
             <div class="col-xs-5" >
-                A:</div><div class="col-xs-5" ><input id="addAtopicAnswerinput"/></div><br/>
+                A:</div><div class="col-xs-5" ><input id="addAtopicAnswerinput" class="input-lg"/></div><br/>
             <div class="col-xs-5" >
-                B:</div><div class="col-xs-5" ><input id="addBtopicAnswer"/></div><br/>
+                B:</div><div class="col-xs-5" ><input id="addBtopicAnswer" class="input-lg"/></div><br/>
             <div class="col-xs-5" >
-                C:</div><div class="col-xs-5" ><input id="addCtopicAnswer"/></div><br/>
+                C:</div><div class="col-xs-5" ><input id="addCtopicAnswer" class="input-lg"/></div><br/>
             <div class="col-xs-5" >
-                D:</div><div class="col-xs-5" ><input id="addDtopicAnswer"/></div>
+                D:</div><div class="col-xs-5" ><input id="addDtopicAnswer" class="input-lg"/></div>
         </div>
 
     </div>
@@ -145,7 +147,7 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="topicAnwser">试题答案</div>
-        <div class="col-xs-3" ><input id="addtopicAnwserinput"/></div>
+        <div class="col-xs-3" ><input id="addtopicAnwserinput" class="input-lg"/></div>
 
     </div>
     <br/>
@@ -153,7 +155,7 @@
     <br/>
 
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" >提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 
 
@@ -166,7 +168,7 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="topicTitle">试题标题</div>
-        <div class="col-xs-3"><input id="edittopicTitleinput"/></div>
+        <div class="col-xs-3"><input id="edittopicTitleinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
@@ -184,7 +186,7 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="edittopicSubject">试题科目</div>
-        <div class="col-xs-3"><input id="edittopicSubjectinput"/></div>
+        <div class="col-xs-3"><input id="edittopicSubjectinput" class="input-lg"/></div>
     </div><br/>
 
     <div class="row">
@@ -211,15 +213,25 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="topicAnwser">试题答案</div>
-        <div class="col-xs-3" ><input id="edittopicAnwserinput"/></div>
+        <div class="col-xs-3" ><input id="edittopicAnwserinput" class="input-lg"/></div>
 
     </div>
     <br/>
 
     <br/>
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn">提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
+</div>
+
+<div id="uploadInfoForm" style="display:none;">
+    <br/>
+    <form name="Form2" method="POST"  enctype="multipart/form-data">
+        <h1>上传文件</h1>
+        <input type="file" id="file">
+        <input type="submit" value="确定上传" id="uploadBtn" class="btn btn-info" onclick="uploadSubmit()"/>
+    </form>
+
 </div>
 
 
@@ -356,6 +368,45 @@
     }
 
 
+    function upload() {
+
+        uploadInfodialog=layer.open({
+            type: 1,
+            offset: 'auto',
+            area:['500px', '520px'],
+            content: $('#uploadInfoForm').show() //这里content是一个普通的String
+        });
+
+
+    }
+
+    function uploadSubmit() {
+        //
+       // $("#uploadBtn").disable();
+        var formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+        console.log(formData);
+        axios.post('${request.contextPath}/Admin/TopicItem/upload/',formData).then(function (response) {
+
+            <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
+            console.log(response.data.status);
+            if(response.data.status){
+                // layer.alert('添加成功！', {icon: 6});
+
+                layer.close(uploadInfodialog);
+                reload();
+            }else {
+                // confirm("失败!");
+                layer.alert('导入失败', {icon: 6});
+                layer.close(uploadInfodialog);
+                reload();
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
     function edit(id) {
         temptopicid=id;
         var respondata="";

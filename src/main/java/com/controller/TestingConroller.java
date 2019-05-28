@@ -2,6 +2,7 @@ package com.controller;
 
 import com.UUID.UUIDgenarater;
 import com.dao.TestingMapper;
+import com.dao.TestpaperMapper;
 import com.service.TestingService;
 import com.model.MsgBean;
 import com.model.Testing;
@@ -17,7 +18,8 @@ public class TestingConroller extends BaseController<Testing> {
     private TestingService testingService;
     @Autowired
     private TestingMapper testingMapper;
-
+    @Autowired
+    private TestpaperMapper testpaperMapper;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody

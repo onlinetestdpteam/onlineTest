@@ -8,6 +8,25 @@ public class Score {
     private String subject;
 
     private Integer testscore;
+    private long time;
+    private String timestr;
+
+    public String getTimestr() {
+        return timestr;
+    }
+
+    public void setTimestr(String timestr) {
+        this.timestr = timestr;
+    }
+
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
 
     public String getId() {
         return id;

@@ -36,24 +36,16 @@
         <!-- //inner_content-->
     </div>
 
-<script>
-
-    $(document).ready(function(){
-
-        $("#submitBtn").click(function(){
-
-
-            var username=document.getElementById("uname").value;
-            var password=document.getElementById("pwd").value;
-
-            var data = {'uname':username, 'pwd':password};
-
-            axios.post('${request.contextPath}/adminlogin/', data).then(function (response) {
-
-            <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
-            console.log(response.data.status);
+    <script>
+        $(document).ready(function(){
+            $("#submitBtn").click(function(){
+                var username=document.getElementById("uname").value;
+                var password=document.getElementById("pwd").value;
+                var data = {'uname':username, 'pwd':password};
+                axios.post('${request.contextPath}/adminlogin/', data).then(function (response) {
+                    <#--axios.get('${request.contextPath}/Admin/User/').then(function (response) {-->
+                    console.log(response.data.status);
                     if(response.data.status){
-
                         location.href="${request.contextPath}/Admin/";
                     }else {
                         // confirm("失败!");
@@ -63,20 +55,14 @@
                         });
                     }
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
-
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
         });
-
-
-    });
-
-
-
-</script>
-<#include "../comment/footer.ftl" />
-<#--导入footer-->
+    </script>
+    <#include "../comment/footer.ftl" />
+    <#--导入footer-->
 </div>
 </body>
 </html>

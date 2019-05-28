@@ -6,7 +6,7 @@
   <select id="selectByAllByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     *
-    from score where score.stuid=#{userid,jdbcType=VARCHAR}
+    from score where score.stuid=#{userid,jdbcType=VARCHAR} order by score.time desc
 </select>
 
 </mapper>

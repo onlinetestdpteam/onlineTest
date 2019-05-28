@@ -3,8 +3,9 @@
     <#include "forecomment/head.ftl">
 </head>
 <body>
-<div>
-    <div class="login-title">
+<div id="container">
+    <canvas id="waterfall"></canvas> <div class="emma flex"> <div>
+        <div class="login-title">
         在线考试系统
     </div>
     <div class="login-body">
@@ -36,8 +37,9 @@
             </div>
         </form>
     </div>
+        </div></div>
 </div>
-<div class="backgroup"></div>
+<#--<div class="backgroup"></div>-->
 <#include "./forecomment/footer.ftl">
 
 <script>

@@ -20,7 +20,7 @@
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
                 <h3 class="w3_inner_tittle two">用户列表</h3>
-                <button id="add" onclick="add()">增加用户</button>
+                <button id="add" onclick="add()" class="btn btn-info">增加用户</button>
                 <table id="table">
                     <thead>
                     <tr>
@@ -73,8 +73,8 @@
                             </td>
 
 
-                        <td><button id="delbtn" onclick='del("${item.id}")'>删除</button>
-                            <button id="addbtn" onclick='edit("${item.id}")'>修改</button>
+                        <td><button id="delbtn" onclick='del("${item.id}")' class="btn btn-info">删除</button>
+                            <button id="addbtn" onclick='edit("${item.id}")' class="btn btn-info">修改</button>
                         </td>
                     </tr>
                     <#else>
@@ -95,21 +95,21 @@
     </div>
 
 
-<div id="userAddInfoForm" style="display:none;">
+<div id="userAddInfoForm" style="display:none;" class="login-form">
     <div class="row">
         <div class="col-xs-3" id="username">用户名</div>
-        <div class="col-xs-3"><input id="usernameinput"/></div>
+        <div class="col-xs-3"><input id="usernameinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
         <div class="col-xs-3" id="userpassword">用户密码</div>
-        <div class="col-xs-3" ><input id="userpasswordinput"/></div>
+        <div class="col-xs-3" ><input id="userpasswordinput" class="input-lg"/></div>
 
     </div>
     <br/>
     <div class="row">
         <div class="col-xs-3" id="phonenumber">电话号码</div>
-        <div class="col-xs-3" ><input id="phonenumberinput"/></div>
+        <div class="col-xs-3" ><input id="phonenumberinput" class="input-lg"/></div>
 
     </div>
     <br/>
@@ -128,7 +128,7 @@
 
     <br/>
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" >提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 
 
@@ -140,18 +140,18 @@
     <div id="userEditInfoForm" style="display:none;">
         <div class="row">
             <div class="col-xs-3" id="username">用户名</div>
-            <div class="col-xs-3"><input id="editusernameinput"/></div>
+            <div class="col-xs-3"><input id="editusernameinput" class="input-lg"/></div>
         </div>
         <br/>
         <div class="row">
             <div class="col-xs-3" id="userpassword">用户密码</div>
-            <div class="col-xs-3" ><input id="edituserpasswordinput"/></div>
+            <div class="col-xs-3" ><input id="edituserpasswordinput" class="input-lg"/></div>
 
         </div>
         <br/>
         <div class="row">
             <div class="col-xs-3" id="phonenumber">电话号码</div>
-            <div class="col-xs-3" ><input id="editphonenumberinput"/></div>
+            <div class="col-xs-3" ><input id="editphonenumberinput" class="input-lg"/></div>
 
         </div>
         <br/>
@@ -170,7 +170,7 @@
 
         <br/>
         <div class="row">
-            <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn">提交</button></div><div class="col-xs-3"/>
+            <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
         </div>
     </div>
 

@@ -7,6 +7,7 @@ import com.model.User;
 import com.service.ScoreService;
 import com.model.MsgBean;
 import com.model.Score;
+import com.util.TimestampUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +43,12 @@ public class ScoreConroller extends BaseController<Score> {
         String userid=login.getId();
         scoreObject.setStuid(userid);
         scoreObject.setTestscore(Integer.valueOf(score));
+        try{
+            Date date=new Date();
+        scoreObject.setTime(date.getTime());
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
         scoreService.setBaseDao(scoreMapper);
         MsgBean scoremsgBean=scoreService.instert(scoreObject);
         if(scoremsgBean.isStatus()){
@@ -75,6 +83,7 @@ public class ScoreConroller extends BaseController<Score> {
     @ResponseBody
     public MsgBean instertById(@RequestBody Score score) {
         score.setId(new UUIDgenarater().getUUID());
+        score.setTime(new Date().getTime());
         return super.instertById(score, scoreService,scoreMapper);
     }
 

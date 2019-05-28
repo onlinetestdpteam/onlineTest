@@ -60,9 +60,12 @@ public class AdminTestingConroller extends BaseController<Testing> {
 
 
         Map tempManp=tempList.get(0);
+        List<String> paperids=testpaperMapper.selectAllpaperId();
         List list=(List)tempManp.get("data");
         map.put("testlist",list);
+        map.put("paperlist",paperids);
         map.put("pagesize",tempManp.get("totalPage"));
+
         try {
             reslut= FreemarkerUtils.getTemplate("admin/testingManager.ftl",map);
         }catch (Exception e){
@@ -70,8 +73,10 @@ public class AdminTestingConroller extends BaseController<Testing> {
         }
 
         Map mappage=new HashMap();
+
         mappage.put("page",reslut);
         mappage.put("pageindex",page);
+
         mappage.put("pagesize",tempManp.get("totalPage"));
 
         return new MsgBean(true,"返回页面成功！",mappage);

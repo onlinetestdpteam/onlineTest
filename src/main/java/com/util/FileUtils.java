@@ -55,7 +55,7 @@ public class FileUtils {
             item.setAnswer(lines.get(i).substring(lines.get(i).length() - 1));
             i++;
             item.setSubject(temp);
-            item.setType("选择题");
+            item.setType("0");
             list.add(item);
         }
         return list;

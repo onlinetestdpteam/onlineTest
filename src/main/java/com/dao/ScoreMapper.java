@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ScoreMapper extends BaseDao<Score>{
+
     long countByExample(ScoreExample example);
 
     int deleteByExample(ScoreExample example);

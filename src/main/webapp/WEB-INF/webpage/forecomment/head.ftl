@@ -2,6 +2,7 @@
     <title>在线考试系统</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="${request.contextPath}/static/css/drawstyle.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
@@ -313,7 +314,7 @@
             margin: 200px auto 0;
             width: 500px;
             height: 100px;
-            background-color: #293D66;
+
             text-align: center;
             line-height: 4;
             font-size: 25px;
@@ -325,7 +326,8 @@
             width: 500px;
             height: 300px;
             margin: 0 auto;
-            background-color: #C2D3FF;
+
+            /*filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;*/
         }
 
         .loginBtn {

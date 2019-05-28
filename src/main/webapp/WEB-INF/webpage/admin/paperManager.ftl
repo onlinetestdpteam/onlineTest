@@ -19,7 +19,7 @@
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
                 <h3 class="w3_inner_tittle two">试卷列表</h3>
-                <button id="add" onclick="add()">增加试卷</button>
+                <button id="add" onclick="add()" class="btn btn-info">增加试卷</button>
                 <table id="table">
                     <thead>
                     <tr>
@@ -60,8 +60,8 @@
                             </#if>
 
                             <#if (item.id)??>
-                                <td><button id="delbtn" onclick='del("${item.id}")'>删除</button>
-                                    <button id="addbtn" onclick='edit("${item.id}")'>修改</button>
+                                <td><button id="delbtn" onclick='del("${item.id}")' class="btn btn-info">删除</button>
+                                    <button id="addbtn" onclick='edit("${item.id}")' class="btn btn-info">修改</button>
                                 </td>
                             <#else>
                                 <td>没有信息</td>
@@ -90,7 +90,7 @@
 <div id="paperAddInfoForm" style="display:none;">
     <div class="row">
         <div class="col-xs-3" id="papername">试卷名</div>
-        <div class="col-xs-3"><input id="addpapernameinput"/></div>
+        <div class="col-xs-3"><input id="addpapernameinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
@@ -107,14 +107,14 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="subject">考试科目</div>
-        <div class="col-xs-3" ><input id="addsubjectinput"/></div>
+        <div class="col-xs-3" ><input id="addsubjectinput" class="input-lg"/></div>
 
     </div>
     <br/>
 
 
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" >提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 
 
@@ -148,7 +148,7 @@
     </div>
     <br/>
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn">提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 </div>
 

@@ -20,6 +20,7 @@
                 <td>序列</td>
                 <td>所属课程</td>
                 <td>考试分数</td>
+                <td>考试时间</td>
             </tr>
             <#--scoreList-->
             <#if scoreList??>
@@ -41,6 +42,11 @@
                     <#else>
                         <td>没有分数信息</td>
                         </#if>
+                <#if scoreItem.timestr??>
+                    <td>${scoreItem.timestr}</td>
+                <#else>
+                    <td>没有考试时间信息</td>
+                </#if>
             </tr>
             <#else>
                 <td>没有分数信息</td>

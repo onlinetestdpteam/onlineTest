@@ -19,7 +19,7 @@
         <div class="agile-tables">
             <div class="w3l-table-info agile_info_shadow">
                 <h3 class="w3_inner_tittle two">考试列表</h3>
-                <button onclick="add()">增加考试</button>
+                <button onclick="add()" class="btn btn-info">增加考试</button>
                 <table id="table">
                     <thead>
                     <tr>
@@ -74,8 +74,8 @@
                             <td> 没有信息</td>
                             </#if>
                             <#if (item.id)??>
-                                <td><button id="delbtn" onclick='del("${item.id}")'>删除</button>
-                                    <button id="addbtn" onclick='edit("${item.id}")'>修改</button>
+                                <td><button id="delbtn" onclick='del("${item.id}")' class="btn btn-info">删除</button>
+                                    <button id="addbtn" onclick='edit("${item.id}")' class="btn btn-info">修改</button>
                                 </td>
                             <#else>
                                 <td>没有信息</td>
@@ -112,7 +112,7 @@
 
     <div class="row">
         <div class="col-xs-3" id="testname">考试标题</div>
-        <div class="col-xs-3"><input id="addtestnameinput"/></div>
+        <div class="col-xs-3"><input id="addtestnameinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
@@ -129,18 +129,24 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="starttime">开始时间</div>
-        <div class="col-xs-3"><input id="addstarttimeinput"/></div>
+        <div class="col-xs-3"><input id="addstarttimeinput" class="input-lg"/></div>
     </div><br/>
     <div class="row">
         <div class="col-xs-3" id="endtime">结束时间</div>
-        <div class="col-xs-3" ><input id="addendtimeinput"/></div>
+        <div class="col-xs-3" ><input id="addendtimeinput" class="input-lg"/></div>
 
     </div>
     <br/>
 
     <div class="row"  id="testpaperid">
         <div class="col-xs-3" >考试试卷</div>
-        <div class="col-xs-3"><input id="addtestpaperidinput"/></div>
+        <div class="col-xs-3">
+            <select id="addtestpaperidinput">
+                <#list paperlist as item>
+                    <option value ="${item.id}" >${item.id}</option>
+                </#list>
+            </select>
+        </div>
 
     </div>
 
@@ -148,7 +154,7 @@
 
 
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" >提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="addSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 
 
@@ -162,7 +168,7 @@
 
     <div class="row">
         <div class="col-xs-3" id="testname">考试标题</div>
-        <div class="col-xs-3"><input id="editTestnameinput"/></div>
+        <div class="col-xs-3"><input id="editTestnameinput" class="input-lg"/></div>
     </div>
     <br/>
     <div class="row">
@@ -179,24 +185,31 @@
     <br/>
     <div class="row">
         <div class="col-xs-3" id="starttime">开始时间</div>
-        <div class="col-xs-3"><input id="editstarttimeinput"/></div>
+        <div class="col-xs-3"><input id="editstarttimeinput" class="input-lg"/></div>
     </div><br/>
     <div class="row">
         <div class="col-xs-3" id="endtime">结束时间</div>
-        <div class="col-xs-3" ><input id="editendtimeinput"/></div>
+        <div class="col-xs-3" ><input id="editendtimeinput" class="input-lg"/></div>
 
     </div>
     <br/>
 
     <div class="row"  id="testpaperid">
         <div class="col-xs-3" >考试试卷</div>
-        <div class="col-xs-3"><input id="editTestpaperidinput"/></div>
+        <#--paperlist-->
+        <div class="col-xs-3">
+            <select id="editTestpaperidinput">
+                <#list paperlist as item>
+                <option value ="${item.id}" >${item.id}</option>
+                </#list>
+            </select>
+        </div>
 
     </div>
 
     <br/>
     <div class="row">
-        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn">提交</button></div><div class="col-xs-3"/>
+        <div class="col-xs-3"/><div class="col-xs-3"><button id="editSubmitBtn" class="btn btn-info">提交</button></div><div class="col-xs-3"/>
     </div>
 </div>
 

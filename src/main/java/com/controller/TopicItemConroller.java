@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.UUID.UUIDgenarater;
+import com.controller.Admin.AdminUserConroller;
 import com.dao.ScoreMapper;
 import com.model.MsgBean;
 import com.model.Page;
@@ -8,12 +9,17 @@ import com.model.Score;
 import com.model.TopicItem;
 import com.service.ScoreService;
 import com.service.TopicItemService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+
 
 @Controller
 @RequestMapping("/Mobile/TopicItem")
@@ -21,6 +27,11 @@ public class TopicItemConroller {
 
     @Autowired
     private TopicItemService topicItemService;
+
+    private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
+
+
+
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody

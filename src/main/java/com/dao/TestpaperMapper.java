@@ -17,4 +17,5 @@ public interface TestpaperMapper extends BaseDao<Testpaper>{
     List<Testpaper> selectByAllBypage();
     List<Testpaper> selectByTestid(String id);
     int updateByPrimaryKey(Testpaper record);
+    List<String> selectAllpaperId();
 }

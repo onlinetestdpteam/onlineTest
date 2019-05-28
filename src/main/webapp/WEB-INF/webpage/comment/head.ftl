@@ -8,8 +8,8 @@
     function hideURLbar(){ window.scrollTo(0,1); } </script>
 
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-
     <!-- //custom-theme -->
+
     <link href="${request.contextPath}/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="${request.contextPath}/static/css/mricode.pagination.css" rel="stylesheet" />
     <link href="${request.contextPath}/static/css/component.css" rel="stylesheet" type="text/css" media="all" />

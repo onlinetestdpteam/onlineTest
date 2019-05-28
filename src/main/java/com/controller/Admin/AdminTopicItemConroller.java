@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +30,30 @@ public class AdminTopicItemConroller {
     private final static Logger logger= LoggerFactory.getLogger(AdminUserConroller.class);
 
 
+    @RequestMapping(value = "/upload/",method = RequestMethod.POST)
+    @ResponseBody
+    public MsgBean uploadFile(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request) {
 
+
+        logger.info("fileName："+file.getOriginalFilename());
+        String basepath="F:\\code\\java\\onlineTest\\src\\main\\webapp\\WEB-INF";
+        String path=basepath+"\\static\\upload\\"+file.getOriginalFilename();
+
+        File newFile=new File(path);
+        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+        try {
+            file.transferTo(newFile);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
+
+        try {
+        topicItemService.insertAllFromFile(path);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
+        return new MsgBean(true,"","");
+    }
     public MsgBean page(HttpServletRequest request,int page,int count) {
         String reslut="";
         Map<String,Object> map=new HashMap<>();
