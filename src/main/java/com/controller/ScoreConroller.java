@@ -40,7 +40,12 @@ public class ScoreConroller extends BaseController<Score> {
         scoreObject.setId(new UUIDgenarater().getUUID());
         scoreObject.setSubject(subject);
         User login = (User) SecurityUtils.getSubject().getPrincipal();
+        if(login==null){
+            logger.error("用户未登录");
+            return "login";
+        }
         String userid=login.getId();
+
         scoreObject.setStuid(userid);
         scoreObject.setTestscore(Integer.valueOf(score));
         try{

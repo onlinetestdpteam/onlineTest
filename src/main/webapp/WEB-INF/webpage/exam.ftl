@@ -2,6 +2,142 @@
 <head>
     <title>考试页面</title>
     <#include "forecomment/head.ftl">
+    <style>
+        .exam-explain {
+            background-color: #f5f5f5;
+            padding-left: 47px;
+            font-size: 15px;
+            color: #337ab7;
+        }
+
+        .main-content {
+            width: 1172px;
+            margin: auto;
+            background-color: #fcf8e3;
+        }
+
+        .main-content-title {
+            width: fit-content;
+            margin: auto;
+            padding: 30px 0 30px 0;
+            color: #337ab7;
+            font-size: 24px;
+        }
+
+        .test-question {
+            margin: 22px 15px;
+        }
+
+        .test-question .question {
+            padding-left: 15px;
+            background-color: #dff0d8;
+            line-height: 58px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .test-question .answer {
+            padding-left: 25px;
+            line-height: 36px;
+            font-size: 16px;
+        }
+
+        .exam-time {
+            position: fixed;
+            left: 0;
+            top: 30%;
+        }
+
+        .exam-time .text {
+            padding: 10px 15px;
+            border: 1px solid #d6e9c6;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: #dff0d8;
+            line-height: 1.5;
+            font-weight: 400;
+            font-size: 14px;
+            color: #3c763d;
+            width: 120px;
+            height: 40px;
+        }
+
+        .exam-time .value {
+            padding: 10px 15px;
+            border: 1px solid #d6e9c6;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #ffffff;
+            line-height: 1.5;
+            font-weight: 400;
+            font-size: 14px;
+            color: #23527c;
+            width: 120px;
+            height: 40px;
+        }
+        .exam-time .value span{
+            color: red;
+        }
+
+        .answer-sheet {
+            position: fixed;
+            right: 0;
+            top: 30%;
+            width: 350px;
+        }
+
+        .answer-sheet .title {
+            padding: 10px 15px;
+            background-color: #dff0d8;
+            line-height: 1.5;
+            font-weight: 400;
+            font-size: 14px;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .answer-sheet .body {
+            border: 1px solid #d6e9c6;
+            text-align: center;
+        }
+
+        .answer-sheet .submit {
+            padding: 10px 0 0 116px;
+            height: 62px;
+            background-color: #f5f5f5;
+            border: 1px solid #d6e9c6;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+        }
+
+        .answer-sheet td {
+            border: 1px solid #ddd;
+            width: 60px;
+            height: 50px;
+        }
+
+        .answer-sheet-a {
+            display: block;
+            width: 55px;
+            height: 35px;
+            padding: 1px 0 0 8px;
+            font-size: 15px;
+            border-radius: 3px;
+            background-color: #5bc0de;
+            margin: auto;
+            color: #ffffff;
+        }
+        table td {
+            padding-left: 0px;
+            border: 1px solid #dddddd;
+            line-height: 40px;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 <#include "navbar.ftl">
@@ -59,21 +195,25 @@
 <div class="answer-sheet">
     <div class="title">答题卡</div>
     <div class="body">
-        <table style="margin: 14px">
-
+        <table style="margin: 0 auto;">
+            <tr>
             <#if topicItemList??>
             <#list topicItemList as topicItem>
+                <#if topicItem_index+1 %3==0>
             <tr>
-                <td>
+                </#if>
+                <td style="text-align: center">
                     <a id="${topicItem.id}" class="answer-sheet-a" href="javascript:void(0);"
                        onclick="getIndex(${topicItem_index})">${topicItem_index + 1}</a>
                 </td>
+                <#if topicItem_index+1 %3==0>
             </tr>
+                </#if>
             <#else>
                 <td>没有试题信息</td>
             </#list>
             </#if>
-
+            </tr>
 
 
         </table>

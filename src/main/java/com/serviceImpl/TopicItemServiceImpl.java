@@ -48,7 +48,7 @@ public class TopicItemServiceImpl implements TopicItemService {
         topicItem.setId("1");
         query.skip(start);
         query.limit(size);
-        query.addCriteria(new Criteria("type").is(type));
+        query.addCriteria(new Criteria("type").is(type).and("subject").is(subject));
 
         return this.mongoTemplate.find(query, TopicItem.class);
 
