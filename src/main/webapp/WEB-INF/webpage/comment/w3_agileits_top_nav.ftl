@@ -8,7 +8,7 @@
                     <ul class="gn-menu agile_menu_drop">
                         <li><a href="${request.contextPath}/Admin/"> <i class="fa fa-tachometer"></i> 首页</a></li>
                         <li id="testManager">
-                            <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> 考试管理 </a>
+                            <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> 考试管理 </a>
 
                         </li>
                         <li id="paperManager">
