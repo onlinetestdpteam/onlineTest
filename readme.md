@@ -6,9 +6,14 @@ dao 层 提供数据操纵
 model 层 实体类
 service,serviceImpl 层 业务层
 
+大致流程为当controller接收到请求之后就会处理相应代码，如果涉及到其它层就会调用service，dao依次处理，然后将返回结果
+返回页面或者直接返回数据（格式为json格式）
+
 ## 本项目采用技术：
 springMVC + mybatis + spring + freemaker + pagehelper + axios + mongdb + shiro
 
+## api风格
+resfulAPI
 ## 数据库技术
 mysql + mongdb
 
